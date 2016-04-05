@@ -37,7 +37,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'testSchema',
+    'signup',
+    'captcha',
+    'GameHub'
+
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -74,7 +77,7 @@ WSGI_APPLICATION = 'GameHub.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/1.9/ref/settings/#databases
-
+#replace this with password of MYSQL root user.
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
