@@ -39,7 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'signup',
     'captcha',
-    'GameHub'
+    'GameHub',
+    'testSchema'
 
 ]
 
@@ -80,12 +81,14 @@ WSGI_APPLICATION = 'GameHub.wsgi.application'
 #replace this with password of MYSQL root user.
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'test',
-        'USER': 'root',
-        'PASSWORD': 'ASDqwe123321', #put your MYSQL password here.
-        'HOST': 'localhost',
-        'PORT': '',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        #'ENGINE': 'django.db.backends.mysql',
+        #'NAME': 'test',
+        #'USER': 'root',
+        #'PASSWORD': 'ASDqwe123321', #put your MYSQL password here.
+        #'HOST': 'localhost',
+        #'PORT': '',
     }
 }
 
