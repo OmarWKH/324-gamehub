@@ -163,7 +163,7 @@ class Report(models.Model):
 
 
 class TabletopRpg(models.Model):
-    narritive_authority = models.CharField(db_column='Narrative_authority', max_length=20, blank=True, null=True)  # Field name made lowercase. Field renamed to remove unsuitable characters.
+    narrative_authority = models.CharField(db_column='Narrative_authority', max_length=20, blank=True, null=True)  # Field name made lowercase. Field renamed to remove unsuitable characters.
     settings = models.TextField(db_column='Settings', blank=True, null=True)  # Field name made lowercase.
     style_of_play = models.CharField(db_column='Play_Style', max_length=20, blank=True, null=True)  # Field name made lowercase. Field renamed to remove unsuitable characters.
     components = models.CharField(db_column='Components', max_length=20, blank=True, null=True)  # Field name made lowercase.
