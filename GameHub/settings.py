@@ -40,9 +40,17 @@ INSTALLED_APPS = [
     'signup',
     'captcha',
     'GameHub',
-    'testSchema'
+    'testSchema',
+    #Omar's test
+    'django_tables2',
+    'crudbuilder',
+    'crudtestgame'
 
 ]
+
+# Crud
+LOGIN_REQUIRED_FOR_CRUD = False
+PERMISSION_REQUIRED_FOR_CRUD = False
 
 MIDDLEWARE_CLASSES = [
     'django.middleware.security.SecurityMiddleware',

@@ -5,7 +5,7 @@ from django.db import models
 # Create your models here.
 
 class Game(models.Model):
-    game_id = models.IntegerField(db_column='GAME_ID', primary_key=True)  # Field name made lowercase.
+    game_id = models.AutoField(db_column='GAME_ID', primary_key=True)  # Field name made lowercase.
     name = models.CharField(db_column='Name', max_length=20)  # Field name made lowercase.
     description = models.TextField(db_column='Description', blank=True, null=True)  # Field name made lowercase.
     poster = models.TextField(db_column='Poster', blank=True, null=True)  # Field name made lowercase.
