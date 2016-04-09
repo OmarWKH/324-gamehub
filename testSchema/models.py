@@ -6,7 +6,7 @@ class Blogpost(models.Model):
     text = models.TextField(db_column='Text')  # Field name made lowercase.
     bp_time = models.DateTimeField(db_column='BP_Time')  # Field name made lowercase.
     is_public = models.IntegerField(db_column='Is_public')  # Field name made lowercase. Field renamed to remove unsuitable characters.
-    post_id = models.IntegerField(db_column='POST_ID')  # Field name made lowercase.
+    post_id = models.AutoField(primary_key=True, db_column='POST_ID')  # Field name made lowercase.
     group = models.ForeignKey('Group', related_name= 'group', db_column='GROUP_ID')  # Field name made lowercase.
     user = models.ForeignKey('signup.User', models.DO_NOTHING, db_column='USER_ID')  # Field name made lowercase.
 
@@ -47,7 +47,7 @@ class ChatChannel(models.Model):
 class ChatMessage(models.Model):
     text = models.TextField(db_column='Text')  # Field name made lowercase.
     cm_time = models.DateTimeField(db_column='CM_Time')  # Field name made lowercase.
-    cm_id = models.IntegerField(db_column='CM_ID')  # Field name made lowercase.
+    cm_id = models.AutoField(primary_key=True, db_column='CM_ID')  # Field name made lowercase.
     user = models.ForeignKey('signup.User', related_name='user', db_column='USER_ID')  # Field name made lowercase.
     cc_name = models.ForeignKey(ChatChannel, related_name='chat_cc_name', db_column='CC_Name')  # Field name made lowercase.
     group = models.ForeignKey(ChatChannel, related_name='chat_group', db_column='GROUP_ID')  # Field name made lowercase.
@@ -61,7 +61,7 @@ class ChatMessage(models.Model):
 class Comments(models.Model):
     text = models.TextField(db_column='Text')  # Field name made lowercase.
     c_time = models.DateTimeField(db_column='C_Time')  # Field name made lowercase.
-    c_id = models.IntegerField(db_column='C_ID')  # Field name made lowercase.
+    c_id = models.AutoField(primary_key=True, db_column='C_ID')  # Field name made lowercase.
     commentor = models.ForeignKey('signup.User', models.DO_NOTHING, db_column='COMMENTOR_ID')  # Field name made lowercase.
     post = models.ForeignKey(Blogpost, related_name='comment_post', db_column='POST_ID')  # Field name made lowercase.
     group = models.ForeignKey(Blogpost, related_name='comment_group', db_column='GROUP_ID')  # Field name made lowercase.
@@ -74,7 +74,7 @@ class Comments(models.Model):
 
 
 class Game(models.Model):
-    game_id = models.IntegerField(db_column='GAME_ID', primary_key=True)  # Field name made lowercase.
+    game_id = models.AutoField(primary_key=True, db_column='GAME_ID')  # Field name made lowercase.
     name = models.CharField(db_column='Name', max_length=20)  # Field name made lowercase.
     description = models.TextField(db_column='Description', blank=True, null=True)  # Field name made lowercase.
     poster = models.TextField(db_column='Poster', blank=True, null=True)  # Field name made lowercase.
@@ -90,13 +90,12 @@ class Game(models.Model):
 
 
 class Group(models.Model):
-    group_id = models.IntegerField(db_column='GROUP_ID', primary_key=True)  # Field name made lowercase.
+    group_id = models.AutoField(db_column='GROUP_ID', primary_key=True)  # Field name made lowercase.
     name = models.CharField(db_column='Name', max_length=20)  # Field name made lowercase.
     description = models.TextField(db_column='Description', blank=True, null=True)  # Field name made lowercase.
     area = models.CharField(db_column='Area', max_length=20)  # Field name made lowercase.
     is_public = models.IntegerField(db_column='Is_public')  # Field name made lowercase. Field renamed to remove unsuitable characters.
-    max_no_of_users = models.BigIntegerField(db_column='Max_no_of_users', blank=True, null=True)  # Field name made lowercase. Field renamed to remove unsuitable characters.
-    user = models.ForeignKey('signup.User', models.DO_NOTHING, db_column='USER_ID', blank=True, null=True)  # Field name made lowercase.
+    creator = models.ForeignKey('signup.User', models.DO_NOTHING, db_column='CREATOR_ID', blank=True, null=True)  # Field name made lowercase.
 
     class Meta:
         managed = False
@@ -109,7 +108,7 @@ class Instances(models.Model):
     instance_location = models.CharField(db_column='INSTANCE_Location', max_length=20)  # Field name made lowercase.
     group = models.ForeignKey(Group, models.DO_NOTHING, db_column='GROUP_ID')  # Field name made lowercase.
     game = models.ForeignKey(Game, models.DO_NOTHING, db_column='GAME_ID', blank=True, null=True)  # Field name made lowercase.
-    instance = models.ForeignKey(Group, related_name='instances_instance', db_column='INSTANCE_ID')  # Field name made lowercase.
+    instance = models.ForeignKey(Group, related_name='instances_instance', db_column='INSTANCE_ID', primary_key=True)  # Field name made lowercase.
 
     class Meta:
         managed = False
@@ -118,6 +117,7 @@ class Instances(models.Model):
 
 
 class List(models.Model):
+    id = models.AutoField(primary_key=True, db_column='ID') # Surrogate key for django
     note = models.CharField(db_column='Note', max_length=20, blank=True, null=True)  # Field name made lowercase.
     ownership = models.IntegerField(db_column='Ownership')  # Field name made lowercase.
     skill = models.CharField(db_column='Skill', max_length=20, blank=True, null=True)  # Field name made lowercase.
@@ -140,6 +140,7 @@ class PhysicalGame(models.Model):
 
 
 class Platform(models.Model):
+    id = models.AutoField(primary_key=True, db_column='ID') # Surrogate key for django
     os = models.CharField(db_column='OS', max_length=20)  # Field name made lowercase.
     game = models.ForeignKey('VideoGame', models.DO_NOTHING, db_column='GAME_ID')  # Field name made lowercase.
 
@@ -150,7 +151,7 @@ class Platform(models.Model):
 
 
 class Report(models.Model):
-    report_id = models.IntegerField(db_column='REPORT_ID')  # Field name made lowercase.
+    report_id = models.AutoField(primary_key=True, db_column='REPORT_ID')  # Field name made lowercase.
     type = models.CharField(db_column='Type', max_length=20, blank=True, null=True)  # Field name made lowercase.
     comment = models.TextField(db_column='Comment')  # Field name made lowercase.
     reporter = models.ForeignKey('signup.User', related_name='reports_reporter', db_column='REPORTER_ID')  # Field name made lowercase.
@@ -175,6 +176,7 @@ class TabletopRpg(models.Model):
 
 
 class Tag(models.Model):
+    id = models.AutoField(primary_key=True, db_column='ID') # Surrogate key for django
     tag = models.CharField(db_column='TAG', max_length=20)  # Field name made lowercase.
     post = models.ForeignKey(Blogpost, related_name='tag_post', db_column='POST_ID')  # Field name made lowercase.
     group = models.ForeignKey(Blogpost, related_name='tag_group', db_column='GROUP_ID')  # Field name made lowercase.
@@ -183,10 +185,11 @@ class Tag(models.Model):
     class Meta:
         managed = False
         db_table = 'TAG'
-        unique_together = (('post', 'group', 'user'),)
+        unique_together = (('post', 'group', 'user', 'tag'),)
 
 
 class Type(models.Model):
+    id = models.AutoField(primary_key=True, db_column='ID') # Surrogate key for django
     genre = models.CharField(db_column='Genre', max_length=20)  # Field name made lowercase.
     game = models.ForeignKey(Game, models.DO_NOTHING, db_column='GAME_ID')  # Field name made lowercase.
 
@@ -197,6 +200,7 @@ class Type(models.Model):
 
 
 class UserGroup(models.Model):
+    id = models.AutoField(primary_key=True, db_column='ID') # Surrogate key for django
     user = models.ForeignKey('signup.User', models.DO_NOTHING, db_column='USER_ID')  # Field name made lowercase.
     group = models.ForeignKey(Group, models.DO_NOTHING, db_column='GROUP_ID')  # Field name made lowercase.
 

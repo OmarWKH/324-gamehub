@@ -1,27 +1,9 @@
 from django.contrib import admin
-
-from testSchema.models import *
+from django.apps import apps
 
 # Register your models here.
 
-# admin.site.register(Game)
-# admin.site.register(BoardGame)
-# admin.site.register(CardGame)
-# admin.site.register(PhysicalGame)
-# admin.site.register(TabletopRpg)
-# admin.site.register(VideoGame)
-# admin.site.register(Platform)
-# admin.site.register(Type)
+app = apps.get_app_config('signup')
 
-# admin.site.register(User)
-# admin.site.register(List)
-# admin.site.register(Report)
-# admin.site.register(UserGroup)
-
-# admin.site.register(Group)
-# admin.site.register(Instances)
-# admin.site.register(Blogpost)
-# admin.site.register(Comments)
-# admin.site.register(Tag)
-# admin.site.register(ChatChannel)
-# admin.site.register(ChatMessage)
+for model_name, model in app.models.items():
+    admin.site.register(model)
