@@ -192,7 +192,7 @@ CREATE TABLE CHAT_CHANNEL
 
 CREATE TABLE LIST
 (
-  ID INTEGER NOT NULL UNIQUE; --surrogate for django primary key
+  ID INTEGER NOT NULL UNIQUE, --surrogate for django primary key
   Note TEXT,
   Ownership TEXT,
   Skill TEXT,
@@ -207,7 +207,7 @@ CREATE TABLE LIST
 
 CREATE TABLE TYPE
 (
-  ID INTEGER NOT NULL UNIQUE; --surrogate for django primary key
+  ID INTEGER NOT NULL UNIQUE, --surrogate for django primary key
   Genre TEXT,
   GAME_ID INTEGER NOT NULL,
   CONSTRAINT Identifier1 PRIMARY KEY (GAME_ID, Genre),
@@ -218,7 +218,7 @@ CREATE TABLE TYPE
 
 CREATE TABLE PLATFORM
 (
-  ID INTEGER NOT NULL UNIQUE; --surrogate for django primary key
+  ID INTEGER NOT NULL UNIQUE, --surrogate for django primary key
   OS TEXT NOT NULL,
   GAME_ID INTEGER NOT NULL,
   CONSTRAINT Identifier1 PRIMARY KEY (GAME_ID, OS),
@@ -229,7 +229,7 @@ CREATE TABLE PLATFORM
 
 CREATE TABLE TAG
 (
-  ID INTEGER NOT NULL UNIQUE; --surrogate for django primary key
+  ID INTEGER NOT NULL UNIQUE, --surrogate for django primary key
   TAG TEXT,
   POST_ID INTEGER NOT NULL,
   GROUP_ID INTEGER NOT NULL,
@@ -242,7 +242,7 @@ CREATE TABLE TAG
 
 CREATE TABLE USERS_GROUPS
 (
-  ID INTEGER NOT NULL UNIQUE; --surrogate for django primary key
+  ID INTEGER NOT NULL UNIQUE, --surrogate for django primary key
   USER_ID INTEGER NOT NULL,
   GROUP_ID INTEGER NOT NULL,
   CONSTRAINT Key1 PRIMARY KEY (USER_ID,GROUP_ID),
