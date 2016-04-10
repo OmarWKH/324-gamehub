@@ -6,5 +6,5 @@ urlpatterns = [
       # Map the root URL / to be handled by
       # 'registration.views.registration_form' view
       url(r'^$', views.registration_form, name= 'signup'),
-      url(r'^captcha/', include('captcha.urls')),
+
 ]
