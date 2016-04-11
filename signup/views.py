@@ -1,12 +1,12 @@
 from django.shortcuts import render
-from .forms import RegistrationForm
+from .forms import UserForm
 
 
 def registration_form(request):
-    if request.method == 'POST':
-        form = RegistrationForm(request.POST)
-        if form.is_valid():
-          return render(request, "registration/SignUpSuccessForm.html")
+    form = UserForm(request.POST or None)
+    if form.is_valid():
+        form.save()
+        return render(request, "registration/SignUpSuccessForm.html")
     else:
-        form = RegistrationForm()
-    return render(request, "registration/SignUpForm.html", {"form": form})
+        form = UserForm()
+        return render(request, "registration/SignUpForm.html", {"form": form})

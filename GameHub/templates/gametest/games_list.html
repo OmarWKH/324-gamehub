@@ -1,0 +1,18 @@
+{% extends "gametest/base.html" %}
+
+{% block title %}Game List{% endblock %}
+
+{% block main %}
+<ul>
+	{% for game in games_list %}
+		<li>
+			{% comment %}<a href='{% url 'gametest:edit_game' game.game_id %}'>[edit]</a>{% endcomment %}
+			<a href='{% url 'gametest:game_details' game.game_id %}'>{{ game.name }}</a>
+
+		</li>
+	{% empty %}
+		No games exist
+	{% endfor %}
+</ul>
+<a href='{% url 'gametest:create_game' %}'>Create Game</a>
+{% endblock %}
