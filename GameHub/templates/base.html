@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>{% block title %}GameHub{% endblock %}</title>
+</head>
+
+<body>
+	<header>
+		{% block header %}<h1>Header block</h1>{% endblock %}
+	</header>
+	<nav>
+		{% block nav %}Navigation block{% endblock %}
+	</nav>
+	<main>
+		{% block main %}Main block | Override me :D{% endblock %}
+	</main>
+	<footer>
+		{% block footer %}Footer block{% endblock %}
+	</footer>
+</body>
+
+</html>

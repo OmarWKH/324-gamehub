@@ -1,0 +1,12 @@
+{% extends "gametest/base.html" %}
+
+{% block title %}Create Game{{ game.game_id }}{% endblock %}
+
+{% block main %}
+{% comment %}{% if game %}{% endcomment %}
+	<form method='POST'>
+		{% csrf_token %} <!-- some verification thing  -->
+		{{ form.as_p }}
+		<input type='submit' value='Save'>
+	</form>
+{% endblock %}

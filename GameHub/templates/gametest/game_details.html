@@ -1,0 +1,19 @@
+{% extends "gametest/base.html" %}
+
+{% block title %}Game Details{% endblock %}
+
+{% block content %}
+<table>
+	<thread>
+		{% for field in form %}
+			<th>{{ field.label }}</th>
+		{% endfor %}
+	</thread>
+	<tbody>
+		<tr>
+			{% for field in form %}
+				<td>{{ field.value|default_if_none:'' }}</td>
+			{% endfor %}
+	</tbody>
+</table>
+{% endblock %}
