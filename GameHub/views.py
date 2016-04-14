@@ -1,9 +1,12 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .forms import LogInForm, RegisterationForm
 from django.contrib.auth import authenticate, login
 from django.shortcuts import HttpResponse
 from django.core.context_processors import csrf
 
+def view_profile(request):
+    context = {'user': request.user}
+    return render(request, "registration/userpage.html", context)
 
 def login_user(request):
     form = LogInForm(request.POST or None)
@@ -13,7 +16,7 @@ def login_user(request):
         user = authenticate(username=username, password=password)
         if user is not None:
             login(request, user)
-            return HttpResponse("You have logged in successfully ")  # Redirect to a success page.
+            return redirect('view_profile')  # Redirect to a success page.
         else:
             return HttpResponse("Invalid Email or password")
     return render(request, "registration/LogInForm.html", {"form": form})

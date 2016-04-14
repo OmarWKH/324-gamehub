@@ -20,7 +20,6 @@ def games_list(request):
 
 def game_details(request, id):
 	game = get_object_or_404(Game, game_id=id)
-	# game = Game.objects.get(game_id=id)
 	form = GameForm(request.GET or None, instance=game)
 	context = {'form': form}
 	return render(request, 'gametest/game_details.html', context)

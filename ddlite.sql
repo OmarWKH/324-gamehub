@@ -8,7 +8,7 @@ CREATE TABLE GAME
   GAME_ID INTEGER NOT NULL,
   Name TEXT NOT NULL,
   Description TEXT,
-  Poster NONE,
+  Poster BLOB,
   No_of_players INTEGER,
   Duration INTEGER,
   No_of_sessions INTEGER,
