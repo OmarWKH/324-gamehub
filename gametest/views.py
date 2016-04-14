@@ -32,13 +32,13 @@ def create_game(request):
 		return redirect('gametest:games_list')
 	return render(request, 'gametest/game_form.html', context)
 
-# def edit_game(request, id):
-# 	game = get_object_or_404(Game, game_id=id)
-# 	form = GameForm(request.POST or None)
-# 	context = {'form': form, 'game': game}
-# 	if form.is_valid():
-# 		form.save()
-# 		return redirect('gametest:games_list')
-# 	return render(request, 'gametest/game_form.html', context)
+def edit_game(request, id):
+	game = get_object_or_404(Game, game_id=id)
+	form = GameForm(request.POST or None, instance=game)
+	context = {'form': form}
+	if form.is_valid():
+		form.save()
+		return redirect('gametest:games_list')
+	return render(request, 'gametest/game_form.html', context)
 
 # def delete_game(request, id):
