@@ -37,7 +37,6 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'signup',
     'captcha',
     'GameHub',
     'testSchema',
@@ -51,7 +50,7 @@ INSTALLED_APPS = [
 # Crud
 LOGIN_REQUIRED_FOR_CRUD = False
 PERMISSION_REQUIRED_FOR_CRUD = False
-
+LOGIN_URL = '/login/'
 MIDDLEWARE_CLASSES = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',

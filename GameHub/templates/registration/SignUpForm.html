@@ -1,9 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <!-- Link to the Bootstrap CSS from a CDN -->
-    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css"
-          rel="stylesheet">
+
   </head>
   <body>
     <div class="container">
@@ -11,12 +9,7 @@
         <h3 class="text-muted">Registration Form</h3>
       </div>
        <div class="row" style="padding:20px;">
-          <form role="form" action="" method="post">
-	         {% csrf_token %} <!-- CSRF token is rendered by Django in forms to avoid CSRF attacks -->
-
-           <!-- If there are non-field errors in the form,
-                iterate over them one by one and display them.
-            -->
+           <form role="form" action="" method="POST"> {% csrf_token %}
            {% if form.non_field_errors %}
             <p class="error">
 		          {% for error in form.non_field_errors %}
@@ -24,21 +17,14 @@
 		          {% endfor %}
             </p>
            {% endif %}
-           <!-- Iterate over the fields in a form and render them  -->
            {% for field in form %}
-            <div class="form-group">
-              <!-- Render the field label tag -->
+               <div class="form-group"> {% csrf_token %}
 		          {{ field.label_tag }}
-              <!-- If the field is required, display a * next to the field label -->
               {% if field.field.required %}
               *
               {% endif %}
               <br/>
-              <!-- Render the input field -->
-		          {{ field }}
-		        <!-- Iterate over the field's errors, if any and display
-                 them one by one in a error alert
-            -->
+                   {{ field }} {% csrf_token %}
 		        {% if field.errors %}
 		          <p class="error">
 		          {% for error in field.errors %}
@@ -54,3 +40,15 @@
     </div>
   </body>
 </html>
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
+      integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css"
+      integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"
+        integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS"
+        crossorigin="anonymous"></script>

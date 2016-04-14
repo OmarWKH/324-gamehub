@@ -15,9 +15,14 @@ Including another URLconf
 """
 from django.conf.urls import include, url
 from django.contrib import admin
+from . import views
 
 urlpatterns = [
     url(r'^gametest/', include('gametest.urls', namespace='gametest')),
-    url(r'^signup/', include('signup.urls')),
     url(r'^admin/', admin.site.urls),
+    url(r'^login/', views.login_user),
+    url(r'^register', views.register_user)
+
+
+
 ]
