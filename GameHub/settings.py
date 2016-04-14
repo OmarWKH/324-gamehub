@@ -49,8 +49,8 @@ INSTALLED_APPS = [
 ]
 
 # Crud
-LOGIN_REQUIRED_FOR_CRUD = False
-PERMISSION_REQUIRED_FOR_CRUD = False
+# LOGIN_REQUIRED_FOR_CRUD = False
+# PERMISSION_REQUIRED_FOR_CRUD = False
 
 MIDDLEWARE_CLASSES = [
     'django.middleware.security.SecurityMiddleware',
