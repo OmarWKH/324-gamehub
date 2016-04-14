@@ -27,16 +27,16 @@ class Game(models.Model):
 
 class BoardGame(models.Model):
     pieces = models.CharField(db_column='Pieces', max_length=20, blank=True, null=True)  # Field name made lowercase.
-    game = models.ForeignKey('Game', models.DO_NOTHING, db_column='GAME_ID', primary_key=True)  # Field name made lowercase.
+    game = models.OneToOneField('Game', models.DO_NOTHING, db_column='GAME_ID', primary_key=True)  # Field name made lowercase.
 
     class Meta:
         managed = False
         db_table = 'BOARD_GAME'
 
 
-class CardGame(models.Model):
+class CardGame(Game):
     cards_type = models.CharField(db_column='Cards_type', max_length=20, blank=True, null=True)  # Field name made lowercase. Field renamed to remove unsuitable characters.
-    game = models.ForeignKey('Game', models.DO_NOTHING, db_column='GAME_ID', primary_key=True)  # Field name made lowercase.
+    game_fk = models.OneToOneField('Game', models.DO_NOTHING, db_column='GAME_ID', primary_key=True, parent_link=True)  # Field name made lowercase.
 
     class Meta:
         managed = False

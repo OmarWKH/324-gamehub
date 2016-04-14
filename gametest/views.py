@@ -8,6 +8,7 @@ class GameForm(ModelForm):
 		class Meta:
 			model = Game
 			exclude = ('game_id',)
+			include_hidden = True
 			# fields = [field.name for field in Game._meta.get_fields()]
 
 
@@ -20,8 +21,8 @@ def games_list(request):
 def game_details(request, id):
 	game = get_object_or_404(Game, game_id=id)
 	# game = Game.objects.get(game_id=id)
-	# form = GameForm(request.GET or None)
-	context = {'game': game}
+	form = GameForm(request.GET or None, instance=game)
+	context = {'form': form}
 	return render(request, 'gametest/game_details.html', context)
 
 def create_game(request):
