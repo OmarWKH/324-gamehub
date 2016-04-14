@@ -19,9 +19,11 @@ def games_list(request):
 
 def game_details(request, id):
 	game = get_object_or_404(Game, game_id=id)
+	form = GameForm(instance = game)
 	# game = Game.objects.get(game_id=id)
 	# form = GameForm(request.GET or None)
-	context = {'game': game}
+	# context = {'game': game}
+	context = {'form': form}
 	return render(request, 'gametest/game_details.html', context)
 
 def create_game(request):
