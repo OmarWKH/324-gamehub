@@ -1,12 +1,28 @@
 {% extends "gametest/base.html" %}
 
-{% block title %}Create Game{{ game.game_id }}{% endblock %}
+{% block title %}Create Game{% endblock %}
 
 {% block main %}
 {% comment %}{% if game %}{% endcomment %}
 	<form method='POST'>
 		{% csrf_token %} <!-- some verification thing  -->
-		{{ form.as_p }}
+		{% comment %} 
+		{{ boardgame_formset.as_p }}
+		    	{% for hidden in form.hidden_fiels %}
+		    		{{ hidden }}
+		    	{% endfor %}
+		{% endcomment %}
+		<table>
+			<h3>Game</h3>
+			{{ game_form }}
+		</table>
+		<table>
+			{{ boardgame_formset.management_form }}
+			<h3>Board Game</h3>
+		    {% for form in boardgame_formset.forms %}
+		        {{ form }}
+		    {% endfor %}
+		</table>
 		<input type='submit' value='Save'>
 	</form>
 {% endblock %}

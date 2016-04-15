@@ -3,17 +3,39 @@
 {% block title %}Game Details{% endblock %}
 
 {% block main %}
+
+<!-- just a headline -->
+{% if boardgame_form %}
+	<h2>Board Game</h2>
+{% else %}
+	<h2>Game</h2>
+{% endif %}
+
 <table>
 	<thread>
-		{% for field in form %}
+		{% for field in game_form %}
 			<th>{{ field.label }}</th>
 		{% endfor %}
+
+		{% if boardgame_form %}
+			{% for field in boardgame_form %}
+				<th>{{ field.label }}</th>
+			{% endfor %}
+		{% endif %}
 	</thread>
 	<tbody>
 		<tr>
-			{% for field in form %}
-				<td>{{ field.value|default_if_none:'' }}</td>
+			{% for field in game_form %}
+				<td>{{ field.value|default_if_none:'-' }}</td>
 			{% endfor %}
+
+			{% if boardgame_form %}
+				{% for field in boardgame_form %}
+					<td>{{ field.value|default_if_none:'-' }}</td>
+				{% endfor %}
+			{% else %}
+				not a board game
+			{% endif %}
 	</tbody>
 </table>
 {% endblock %}
