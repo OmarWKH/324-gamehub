@@ -1,0 +1,11 @@
+<h1>List of Groups</h1>
+
+<ul>
+    {% for group in object_list %}
+        {% if group.is_public == 1 %}
+        <li><a href="{{ group.group_id }}">{{ group.name }}</a></li>
+        {% endif %}
+    {% endfor %}
+</ul>
+
+<a href="create/">Create a group</a>

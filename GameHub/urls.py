@@ -25,7 +25,8 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^login/', views.login_user),
     url(r'^register', views.register_user),
-    url(r'^userpage', views.view_profile, name='view_profile')
+    url(r'^userpage', views.view_profile, name='view_profile'),
+    url(r'^groups/', include('groups.urls')),
 ]
 
 if settings.DEBUG:

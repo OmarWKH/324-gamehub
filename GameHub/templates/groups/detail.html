@@ -1,0 +1,35 @@
+<h1>Details of {{ group.name }}</h1>
+
+<b>ID: </b> {{ group.pk }}
+<br>
+<b>Creator: </b>{{ group.creator }}
+<br>
+<b>Description: </b> {{ group.description }}
+<br>
+<b>Location: </b>{{ group.area }}
+<br>
+<br>
+<br>
+<br>
+
+--- I am working on this part still
+<br>
+<b>Users Joind: </b>
+{% for user in object_list %}
+    {{ user.user }}
+    <br>
+{% endfor %}
+<br>
+<br>
+<br>
+
+
+Want to join the group?
+<form action="#" method="post" enctype="multipart/form-data">
+{% csrf_token %}
+
+
+
+
+<button type="submit">Join</button>
+</form>

@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'captcha',
     'GameHub',
     'testSchema',
+    'groups',
     #Omar's test
     'gametest',
     #'crudgametest',
