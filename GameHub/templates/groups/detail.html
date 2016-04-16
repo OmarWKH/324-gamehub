@@ -1,10 +1,36 @@
 <h1>Details of {{ group.name }}</h1>
 
-<b>ID:</b>
-{{ group.group_id }}
+<b>ID: </b> {{ group.pk }}
+<br>
+<b>Creator: </b>{{ group.creator }}
+<br>
+<b>Description: </b> {{ group.description }}
+<br>
+<b>Location: </b>{{ group.area }}
+<br>
+<br>
+<br>
+<br>
 
-<b>Description:<b>
-{{ group.description }}
+--- I am working on this part still
+<br>
+<b>Users Joind: </b>
+{% for user in usergroup %}
+    {% if usergroup.group ==  group.pk %}
+    {{ usergroup.user }}
+    {% endif %}
+    <br>
+{% endfor %}
+<br>
+<br>
+<br>
+Want to join the group?
+<form action="" method="post" enctype="multipart/form-data">
+{% csrf_token %}
+{% for field in usergroup %}
+    <span>{{ field.errors }}</span>
 
-<b>Location:</b>
-{{ group.area }}
+    <div>{{ field }}</div>
+{% endfor %}
+<button type="submit">Join</button>
+</form>
