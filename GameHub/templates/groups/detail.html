@@ -15,22 +15,21 @@
 --- I am working on this part still
 <br>
 <b>Users Joind: </b>
-{% for user in usergroup %}
-    {% if usergroup.group ==  group.pk %}
-    {{ usergroup.user }}
-    {% endif %}
+{% for user in object_list %}
+    {{ user.user }}
     <br>
 {% endfor %}
 <br>
 <br>
 <br>
-Want to join the group?
-<form action="" method="post" enctype="multipart/form-data">
-{% csrf_token %}
-{% for field in usergroup %}
-    <span>{{ field.errors }}</span>
 
-    <div>{{ field }}</div>
-{% endfor %}
+
+Want to join the group?
+<form action="#" method="post" enctype="multipart/form-data">
+{% csrf_token %}
+
+
+
+
 <button type="submit">Join</button>
 </form>

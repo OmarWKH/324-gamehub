@@ -202,7 +202,6 @@ class Type(models.Model):
 
 
 class UserGroup(models.Model):
-    id = models.AutoField(primary_key=True, db_column='ID') # Surrogate key for django
     user = models.ForeignKey('User', models.DO_NOTHING, db_column='USER_ID')  # Field name made lowercase.
     group = models.ForeignKey(Group, models.DO_NOTHING, db_column='GROUP_ID')  # Field name made lowercase.
 
