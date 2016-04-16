@@ -3,12 +3,18 @@ from django.views.generic.edit import FormView
 from django.forms import ModelForm, inlineformset_factory
 from django import forms
 
+from django.contrib.auth.models import User
 from .models import *
 
 # a way to choose if game is boardgame or not without having to fill pieces
 # edit_game doesn't show the existing instance of board_game
 # need to add other game types
 # merge create_game and edit_game
+
+# filter games/find game
+# delete game
+# in user_list_game hide user field
+# edit/delte user_list_game
 
 # ignore comments of code down below (other comments are helpufl, hopefully)
 
@@ -38,6 +44,12 @@ class BoardGameForm(ModelForm):
 		exclude = ('game',)
 
 
+class UserListForm(ModelForm):
+	class Meta:
+		model = List
+		exclude = ('id',)
+
+
 # Could add filters to parameters
 def games_list(request):
 	list = Game.objects.all()
@@ -50,12 +62,35 @@ def game_details(request, id):
 	game_form = GameForm(request.GET or None, instance=game_instance)
 	context = {'game_form': game_form}
 
+	# list of players who listed the game, if any
+	try:
+		players_list = List.objects.filter(game=game_instance)
+		context['players_list'] = players_list
+	except DoesNotExist:
+		pass
+
 	# will add boardgame form only if this is a boardgame
 	if BoardGame.objects.filter(game=game_instance).exists():
 		boardgame_form = BoardGameForm(request.GET or None, instance=BoardGame.objects.get(game=game_instance))
 		context['boardgame_form'] = boardgame_form
 
 	return render(request, 'gametest/game_details.html', context)
+
+#requere login
+def user_list_game(request, id):
+	game_instance = get_object_or_404(Game, game_id=id)
+	current_user = request.user
+	initial_values = {'game': game_instance, 'user': current_user}
+	list_form = UserListForm(request.POST or None, initial=initial_values) # or None > field is required gone?! | initial works
+	list_form.fields['user'].queryset = User.objects.filter(username=current_user.get_username())
+
+	context = {'list_form': list_form}
+
+	if list_form.is_valid():
+		list_form.save()
+		return redirect('gametest:games_list') # could: game_details, where users are shown
+												# could: userpage, where games are shown
+	return render(request, 'gametest/user_list_form.html', context)
 
 def create_game(request):
 	game_instance = Game()

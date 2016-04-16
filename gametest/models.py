@@ -1,6 +1,7 @@
 from __future__ import unicode_literals
 
 from django.db import models
+from django.conf import settings
 
 # Create your models here.
 class Game(models.Model):
@@ -101,15 +102,16 @@ class Type(models.Model):
         unique_together = (('game', 'genre'),)
 
 
-# class List(models.Model):
-#     id = models.AutoField(primary_key=True, db_column='ID') # Surrogate key for django
-#     note = models.CharField(db_column='Note', max_length=20, blank=True, null=True)  # Field name made lowercase.
-#     ownership = models.IntegerField(db_column='Ownership')  # Field name made lowercase.
-#     skill = models.CharField(db_column='Skill', max_length=20, blank=True, null=True)  # Field name made lowercase.
-#     game = models.ForeignKey(Game, models.DO_NOTHING, db_column='GAME_ID')  # Field name made lowercase.
-#     user = models.ForeignKey('signup.User', models.DO_NOTHING, db_column='USER_ID')  # Field name made lowercase.
+class List(models.Model):
+    id = models.AutoField(primary_key=True, db_column='ID') # Surrogate key for django
+    note = models.CharField(db_column='Note', max_length=20, blank=True, null=True)  # Field name made lowercase.
+    ownership = models.IntegerField(db_column='Ownership')  # Field name made lowercase.
+    skill = models.CharField(db_column='Skill', max_length=20, blank=True, null=True)  # Field name made lowercase.
+    game = models.ForeignKey(Game, models.DO_NOTHING, db_column='GAME_ID')  # Field name made lowercase.
+    # user = models.ForeignKey('', models.DO_NOTHING, db_column='USER_ID')  # Field name made lowercase.
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
 
-#     class Meta:
-#         managed = False
-#         db_table = 'LIST'
-#         unique_together = (('game', 'user'),)
+    class Meta:
+        managed = False
+        db_table = 'LIST'
+        unique_together = (('game', 'user'),)

@@ -38,4 +38,15 @@
 			{% endif %}
 	</tbody>
 </table>
+
+<h3>Players</h3>
+{% if players_list %}
+	<li>
+		{% for item in players_list %}
+			<ul>{{ item.user }}</ul>
+		{% endfor %}
+	</li>
+{% else %}
+	no players
+{% endif %}
 {% endblock %}
