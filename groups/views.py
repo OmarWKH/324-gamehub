@@ -23,9 +23,15 @@ class GroupDetail(generic.DetailView):
 class GroupCreate(generic.CreateView):
     model = Group
     fields = ['name', 'description', 'area', 'is_public', 'creator']
-
+    
     def get_initial(self):
         return { 'creator': self.request.user }
+
+    def get_form(self, form_class):
+        form = super(generic.CreateView, self).get_form(form_class)
+        current_username = self.request.user.username
+        form.fields['creator'].queryset = User.objects.filter(username=current_username)
+        return form
 
 
 class ShowUsers(generic.ListView):
