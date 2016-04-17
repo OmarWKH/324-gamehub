@@ -33,4 +33,4 @@ class UserGroup(models.Model):
         unique_together = (('user', 'group'),)
 
     def __str__(self):
-        return str(self.user)
+        return str(self.id)

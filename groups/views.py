@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from .models import Group, UserGroup
 from django.views import generic
+from django.conf import settings
 from django.views.generic import CreateView, UpdateView, DetailView
 
 
@@ -21,11 +22,10 @@ class GroupCreate(generic.CreateView):
     fields = ['name', 'description', 'area', 'is_public', 'creator']
 
 
-class JoinGroup(generic.ListView):
-    model = UserGroup
-    template_name = 'groups/detail.html'
-    # context_object_name = 'ug'
-    # fields = ['id', 'user', 'group']
+class ShowUsers(generic.ListView):
+    template_name = 'groups/test.html'
 
     def get_queryset(self):
         return UserGroup.objects.all()
+
+# def JoinGroup(request, group_id):

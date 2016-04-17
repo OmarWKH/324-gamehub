@@ -14,22 +14,25 @@
 
 --- I am working on this part still
 <br>
-<b>Users Joind: </b>
-{% for user in object_list %}
-    {{ user.user }}
-    <br>
+<b>User Joined:</b>
+<br>
+{% for g in group.usergroup_set.all %}
+    {% if g.group_id == group.pk %}
+        {{ g.user }}
+        <br>
+    {% endif %}
 {% endfor %}
-<br>
-<br>
-<br>
+{% block body %}
+{% endblock %}
 
+<br>
+<br>
+<br>
+<br>
 
 Want to join the group?
 <form action="#" method="post" enctype="multipart/form-data">
 {% csrf_token %}
-
-
-
 
 <button type="submit">Join</button>
 </form>
