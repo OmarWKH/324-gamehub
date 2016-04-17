@@ -1,0 +1,14 @@
+<h1>Join a Group</h1>
+
+<form action="" method="post" enctype="multipart/form-data">
+{% csrf_token %}
+
+{% for field in form %}
+    <span>{{ field.errors }}</span>
+
+    <label>{{ field.label_tag }}</label>
+    <div>{{ field }}</div>
+{% endfor %}
+<button type="submit">Join</button>
+</form>
+
