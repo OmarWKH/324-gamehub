@@ -7,14 +7,7 @@
 	{% csrf_token %} <!-- some verification thing  -->
 	<table>
 		<h3>Game</h3>
-		{{ game_form }}
-	</table>
-	<table>
-		{{ boardgame_formset.management_form }}
-		<h3>Board Game</h3>
-	    {% for form in boardgame_formset.forms %}
-	        {{ form }}
-	    {% endfor %}
+		{{ list_form }}
 	</table>
 	<input type='submit' value='Save'>
 </form>
