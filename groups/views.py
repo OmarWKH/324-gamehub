@@ -24,6 +24,9 @@ class GroupCreate(generic.CreateView):
     model = Group
     fields = ['name', 'description', 'area', 'is_public', 'creator']
 
+    def get_initial(self):
+        return { 'creator': self.request.user }
+
 
 class ShowUsers(generic.ListView):
     template_name = 'groups/joined.html'

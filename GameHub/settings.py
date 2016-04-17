@@ -41,10 +41,7 @@ INSTALLED_APPS = [
     'GameHub',
     'testSchema',
     'groups',
-    #Omar's test
     'gametest',
-    #'crudgametest',
-    #'django_extensions'
 
 ]
 
