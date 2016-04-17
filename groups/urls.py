@@ -14,6 +14,4 @@ urlpatterns = [
 
     # join
     url(r'^(?P<pk>[0-9]+)/join/$', views.JoinGroup.as_view(), name='join'),
-
-    url(r'(?P<pk>[0-9]+)/users$', views.ShowUsers.as_view(), name='show'),
 ]
