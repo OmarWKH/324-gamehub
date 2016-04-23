@@ -1,0 +1,22 @@
+<h1>Info About {{ user_id }}</h1>
+
+<h1>Groups {{ user_id }} Joined: </h1>
+{% for group in all_groups %}
+    {% if group.user.id == user_id %}
+        {{ group.group }}
+        <br>
+    {% endif %}
+{% endfor %}
+
+ <br>
+<h3>----------</h3>
+ <br>
+ <br>
+
+<h1>Games {{ user_id }} Listed: </h1>
+{% for list in all_lists %}
+    {% if list.user.id == user_id %}
+        {{ list.game.name }}
+        <br>
+    {% endif %}
+{% endfor %}
