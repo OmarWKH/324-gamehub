@@ -2,20 +2,48 @@
 
 {% block title %}Create Game{% endblock %}
 
+
 {% block main %}
 <form method='POST'>
 	{% csrf_token %} <!-- some verification thing  -->
-	<table>
-		<h3>Game</h3>
+	<table id='game'>
+		<h2>Game</h2>
 		{{ game_form }}
 	</table>
-	<table>
+	<table id='genres'>
+		<tr><td><h4>Genres</h4></td></tr>
+		<tr><td><a href="javascript:void(0)" id="add_genre">Add Genre</a></td></tr>
+		{{ genres_formset.management_form }}
+		{% for form in genres_formset %}
+			{{ form }}
+		{% endfor %}
+	</table>
+	<table id='types'>
+		{% for gametype_formset in gametypes_formsets %}
+			{{ gametype_formset.management_form }}
+			<tr><td><h3>{{ gametype_formset.model.type }}</h3></td></tr>
+			{% for form in gametype_formset.forms %}
+				{{ form }}
+			{% endfor %}
+		{% endfor %}
+		{% comment %}
 		{{ boardgame_formset.management_form }}
 		<h3>Board Game</h3>
-	    {% for form in boardgame_formset.forms %}
-	        {{ form }}
-	    {% endfor %}
+		{% for form in boardgame_formset.forms %}
+			{{ form }}
+		{% endfor %}
+		{% endcomment %}
 	</table>
 	<input type='submit' value='Save'>
 </form>
+
+<script>
+	var form_count = {{genres_formset.total_form_count}};
+	$('#add_genre').click(function() {
+		form_count++;
+		var form = '{{genres_formset.empty_form|escapejs}}'.replace(/__prefix__/g, form_count);
+		$('#genres').append(form)
+		$('#id_gn-TOTAL_FORMS').val(form_count);
+	});
+</script>
 {% endblock %}

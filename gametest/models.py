@@ -36,14 +36,24 @@ class BoardGame(models.Model):
     def __unicode__(self):
         return self.game.name
 
+    @classmethod
+    def type(self):
+        return self.__name__
+
     class Meta:
         managed = False
         db_table = 'BOARD_GAME'
 
 
-class CardGame(Game):
+class CardGame(models.Model):
+#class CardGame(Game):
     cards_type = models.CharField(db_column='Cards_type', max_length=20, blank=True, null=True)  # Field name made lowercase. Field renamed to remove unsuitable characters.
-    game_fk = models.OneToOneField('Game', models.DO_NOTHING, db_column='GAME_ID', primary_key=True, parent_link=True)  # Field name made lowercase.
+    game = models.ForeignKey('Game', models.DO_NOTHING, db_column='GAME_ID', primary_key=True)  # Field name made lowercase.
+    #game_fk = models.OneToOneField('Game', models.DO_NOTHING, db_column='GAME_ID', primary_key=True, parent_link=True)  # Field name made lowercase.
+
+    @classmethod
+    def type(self):
+        return self.__name__
 
     class Meta:
         managed = False
@@ -53,6 +63,10 @@ class CardGame(Game):
 class PhysicalGame(models.Model):
     physical_requirements = models.TextField(db_column='Physical_requirements', blank=True, null=True)  # Field name made lowercase. Field renamed to remove unsuitable characters.
     game = models.ForeignKey(Game, models.DO_NOTHING, db_column='GAME_ID', primary_key=True)  # Field name made lowercase.
+
+    @classmethod
+    def type(self):
+        return self.__name__
 
     class Meta:
         managed = False
@@ -66,6 +80,10 @@ class TabletopRpg(models.Model):
     components = models.CharField(db_column='Components', max_length=20, blank=True, null=True)  # Field name made lowercase.
     game = models.ForeignKey(Game, models.DO_NOTHING, db_column='GAME_ID', primary_key=True)  # Field name made lowercase.
 
+    @classmethod
+    def type(self):
+        return self.__name__
+
     class Meta:
         managed = False
         db_table = 'TABLETOP_RPG'
@@ -74,6 +92,10 @@ class TabletopRpg(models.Model):
 class VideoGame(models.Model):
     system_requirements = models.TextField(db_column='System_requirements', blank=True, null=True)  # Field name made lowercase. Field renamed to remove unsuitable characters.
     game = models.ForeignKey(Game, models.DO_NOTHING, db_column='GAME_ID', primary_key=True)  # Field name made lowercase.
+
+    @classmethod
+    def type(self):
+        return self.__name__
 
     class Meta:
         managed = False

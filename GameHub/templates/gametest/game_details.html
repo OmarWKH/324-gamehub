@@ -17,11 +17,11 @@
 			<th>{{ field.label }}</th>
 		{% endfor %}
 
-		{% if boardgame_form %}
-			{% for field in boardgame_form %}
+		{% for form in gametypes_forms %}
+			{% for field in form %}
 				<th>{{ field.label }}</th>
 			{% endfor %}
-		{% endif %}
+		{% endfor %}
 	</thread>
 	<tbody>
 		<tr>
@@ -29,13 +29,11 @@
 				<td>{{ field.value|default_if_none:'-' }}</td>
 			{% endfor %}
 
-			{% if boardgame_form %}
-				{% for field in boardgame_form %}
+			{% for form in gametypes_forms %}
+				{% for field in form %}
 					<td>{{ field.value|default_if_none:'-' }}</td>
 				{% endfor %}
-			{% else %}
-				not a board game
-			{% endif %}
+			{% endfor %}
 	</tbody>
 </table>
 
