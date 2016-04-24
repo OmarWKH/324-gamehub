@@ -1,6 +1,6 @@
 from django.shortcuts import redirect, render, get_object_or_404
 from django.views.generic.edit import FormView
-from django.forms import ModelForm, inlineformset_factory
+from django.forms import ModelForm, inlineformset_factory, modelform_factory
 from django import forms
 
 from django.contrib.auth.models import User
@@ -18,30 +18,12 @@ from .models import *
 
 # ignore comments of code down below (other comments are helpufl, hopefully)
 
+GAME_TYPES_MODELS = [BoardGame, CardGame, PhysicalGame, TabletopRpg, VideoGame]
+
 class GameForm(ModelForm):
-
-	# def __init__(self, *args, **kwargs):
-	# 	super(GameForm, self).__init__(*args, **kwargs)
-	# 	self.fields['is_boardgame'] = models.BooleanField(default=False) #default
-	# 	if self.instance:
-	# 		if BoardGame.objects.filter(game=self.instance).exists():
-	# 			self.fields['is_boardgame'].default=True
-	# 		#else:
-	# 		#	self.fields['is_boardgame'].initial=False
-	# 	#else:
-	# 	#	self.fields['is_boardgame'].initial=False
-
 	class Meta:
 		model = Game
-		exclude = () # ('game_id',)
-		# include_hidden = True
-		# fields = [field.name for field in Game._meta.get_fields()]
-
-
-class BoardGameForm(ModelForm):
-	class Meta:
-		model = BoardGame
-		exclude = ('game',)
+		exclude = ()
 
 
 class UserListForm(ModelForm):
@@ -70,11 +52,27 @@ def game_details(request, id):
 		pass
 
 	# will add boardgame form only if this is a boardgame
-	if BoardGame.objects.filter(game=game_instance).exists():
-		boardgame_form = BoardGameForm(request.GET or None, instance=BoardGame.objects.get(game=game_instance))
-		context['boardgame_form'] = boardgame_form
+	# if BoardGame.objects.filter(game=game_instance).exists():
+	# 	boardgame_form = BoardGameForm(request.GET or None, instance=BoardGame.objects.get(game=game_instance))
+	# 	context['boardgame_form'] = boardgame_form
+	
+	# adds game type forms for for all game types in GAME_TYPES_MODELS array (defined at the top)
+	gametypes_forms = []
+	for model in GAME_TYPES_MODELS:
+		gametype_form = get_gametype_form(model, game_instance, request)
+		if gametype_form:
+			gametypes_forms.append(gametype_form)
+	context['gametypes_forms'] =  gametypes_forms
 
 	return render(request, 'gametest/game_details.html', context)
+
+def get_gametype_form(GameType, game_instance, request):
+	if GameType.objects.filter(game=game_instance).exists():
+		GameTypeForm = modelform_factory(GameType, exclude=('game',))
+		gametype_form = GameTypeForm(request.GET or None, instance=GameType.objects.get(game=game_instance))
+		# form_name = GameType.type().lower() + '_form'
+		# context[form_name] = gametype_form
+		return gametype_form
 
 #requere login
 def user_list_game(request, id):
@@ -92,48 +90,47 @@ def user_list_game(request, id):
 												# could: userpage, where games are shown
 	return render(request, 'gametest/user_list_form.html', context)
 
-def create_game(request):
-	game_instance = Game()
+def manage_game(request, id=None):
+	if id:
+		game_instance = get_object_or_404(Game, game_id=id)
+	else:
+		game_instance = Game()
+
 	game_form = GameForm(request.POST or None, instance=game_instance)
 
-	# creating an inline formset for boardgame linked to the empty instance game_instance
-	BoardGameFormSet = inlineformset_factory(Game, BoardGame, exclude=()) #('game_id',))
-	bg_request = get_formset_data(request, 'bg')
-	boardgame_formset = BoardGameFormSet(bg_request, instance=game_instance, prefix='bg')
-	
-	context = {
-		'game_form': game_form,
-		'boardgame_formset': boardgame_formset
-	}
-
-	if game_form.is_valid() and boardgame_formset.is_valid():
-		game_form.save()
-	 	boardgame_formset.save()
-	 	return redirect('gametest:games_list')
-	return render(request, 'gametest/game_form.html', context)
-
-def edit_game(request, id):
-	game_instance = get_object_or_404(Game, game_id=id)
-	game_form = GameForm(request.POST or None, instance=game_instance)
-	
-	# creating a boardgame inline formset linked to the instance game_instance
-	BoardGameFormSet = inlineformset_factory(Game, BoardGame, exclude=()) #('game_id',))
-	bg_request = get_formset_data(request, 'bg')
-	boardgame_formset = BoardGameFormSet(bg_request, instance=game_instance, prefix='bg')
+	# creating an inline formset for game types linked to the empty instance game_instance
+	genres_formset = get_game_formset(Type, 'gn', game_instance, request)
+	gametypes_formsets = []
+	for model in GAME_TYPES_MODELS:
+		prefix = model.type().lower()
+		formset = get_game_formset(model, prefix, game_instance, request)
+		gametypes_formsets.append(formset)
 
 	context = {
 		'game_form': game_form,
-		'boardgame_formset': boardgame_formset
+		'genres_formset': genres_formset,
+		'gametypes_formsets': gametypes_formsets
 	}
 
-	# boardgame_formset = BoardGameFormSet(request.POST, instance=game_instance, prefix='bg')
-	if game_form.is_valid() and boardgame_formset.is_valid():
+	gametypes_formsets_are_valid = True
+	for formset in gametypes_formsets:
+		gametypes_formsets_are_valid = formset.is_valid()
+
+	if game_form.is_valid() and genres_formset.is_valid() and gametypes_formsets_are_valid:
 		game_form.save()
-	 	boardgame_formset.save()
-	 	return redirect('gametest:games_list')
+		genres_formset.save()
+		for formset in gametypes_formsets:
+			formset.save()
+		return redirect('gametest:games_list')
 	return render(request, 'gametest/game_form.html', context)
 
-# add management data to post request, needed for inline formsets (like boardgame_form above)
+def get_game_formset(model, model_prefix, game_instance, request):
+	GameModelFormSet = inlineformset_factory(Game, model, exclude=()) #('game_id',))
+	request_with_data = get_formset_data(request, model_prefix)
+	model_formset = GameModelFormSet(request_with_data, instance=game_instance, prefix=model_prefix)
+	return model_formset
+
+# add management data to post request, needed for inline formsets (used for game types above)
 # inline formset can add multiple forms, which explains total, initial, max_num below
 def get_formset_data(request, prefix):
 	total = prefix+'-TOTAL_FORMS'

@@ -8,6 +8,7 @@ from django.conf import settings
 from django.views.generic import CreateView, UpdateView, DetailView
 
 
+
 class IndexView(generic.ListView):
     template_name = 'groups/index.html'
 
@@ -20,20 +21,20 @@ class GroupDetail(generic.DetailView):
     template_name = 'groups/detail.html'
 
 
-class GroupCreate(generic.CreateView):
+class GroupCreate(CreateView):
     model = Group
     fields = ['name', 'description', 'area', 'is_public', 'creator']
     
-    def get_initial(self):
-        return { 'creator': self.request.user }
+    # def get_initial(self):
+    #     return { 'creator': self.request.user }
+    #
+    # def get_form(self, form_class):
+    #     form = super(generic.CreateView, self).get_form(form_class)
+    #     current_username = self.request.user.username
+    #     form.fields['creator'].queryset = User.objects.filter(username=current_username)
+    #     return form
 
-    def get_form(self, form_class):
-        form = super(generic.CreateView, self).get_form(form_class)
-        current_username = self.request.user.username
-        form.fields['creator'].queryset = User.objects.filter(username=current_username)
-        return form
-
-class JoinGroup(generic.CreateView):
+class JoinGroup(CreateView):
     model = UserGroup
     template_name = 'groups/join.html'
     fields = ['user', 'group']
@@ -41,10 +42,10 @@ class JoinGroup(generic.CreateView):
     def get_initial(self):
         return {'user': self.request.user}
 
-    def get_form(self, form_class):
-        form = super(generic.CreateView, self).get_form(form_class)
-        current_username = self.request.user.username
-        form.fields['user'].queryset = User.objects.filter(username=current_username)
-        return form
+    # def get_form(self, form_class):
+    #     form = super(generic.CreateView, self).get_form(form_class)
+    #     current_username = self.request.user.username
+    #     form.fields['user'].queryset = User.objects.filter(username=current_username)
+    #     return form
 
     success_url = reverse_lazy('groups:index')

@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'testSchema',
     'groups',
     'gametest',
+    'userpage',
 
 ]
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
