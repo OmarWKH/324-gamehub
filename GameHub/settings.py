@@ -32,6 +32,8 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'django.contrib.admin',
+    'django.contrib.sites',
+    'registration',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -42,9 +44,15 @@ INSTALLED_APPS = [
     'testSchema',
     'groups',
     'gametest',
+    'userpage',
 
 ]
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+ACCOUNT_ACTIVATION_DAYS = 0
+REGISTRATION_AUTO_LOGIN = True
+LOGIN_REDIRECT_URL = '/gametest/'
 
+SITE_ID=1
 # Crud
 LOGIN_REQUIRED_FOR_CRUD = False
 PERMISSION_REQUIRED_FOR_CRUD = False

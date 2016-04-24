@@ -23,10 +23,9 @@ from django.conf import settings
 urlpatterns = [
     url(r'^gametest/', include('gametest.urls', namespace='gametest')),
     url(r'^admin/', admin.site.urls),
-    url(r'^login/', views.login_user),
-    url(r'^register', views.register_user),
-    url(r'^userpage', views.view_profile, name='view_profile'),
+    url(r'^accounts/', include('registration.backends.default.urls')),
     url(r'^groups/', include('groups.urls')),
+    url(r'^userpage/', include('userpage.urls')),
 ]
 
 if settings.DEBUG:
