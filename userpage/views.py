@@ -30,6 +30,6 @@ def index(request, user_id):
 
 def dashboard(request):
     if request.user.is_anonymous():
-        return HttpResponseRedirect('/accounts/login/')
+        return HttpResponseRedirect(settings.LOGIN_URL)
 
     return HttpResponse('test')

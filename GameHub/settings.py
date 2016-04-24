@@ -47,16 +47,15 @@ INSTALLED_APPS = [
     'userpage',
 
 ]
+
+# registeration
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-ACCOUNT_ACTIVATION_DAYS = 0
+ACCOUNT_ACTIVATION_DAYS = 7
 REGISTRATION_AUTO_LOGIN = True
-LOGIN_REDIRECT_URL = '/gametest/'
+LOGIN_REDIRECT_URL = 'userpage'
+LOGIN_URL = '/accounts/login/'
 
 SITE_ID=1
-# Crud
-LOGIN_REQUIRED_FOR_CRUD = False
-PERMISSION_REQUIRED_FOR_CRUD = False
-LOGIN_URL = '/login/'
 
 MIDDLEWARE_CLASSES = [
     'django.middleware.security.SecurityMiddleware',
