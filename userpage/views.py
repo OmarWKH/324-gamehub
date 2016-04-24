@@ -7,16 +7,23 @@ from django.views import generic
 from django.conf import settings
 from django.http import HttpResponse, HttpResponseRedirect
 from django.template import loader
+from django.contrib.sites.models import Site
+
+
 
 def index(request, user_id):
+    current_site = Site.objects.get_current()
+    host = current_site.domain
+    user_id = int(user_id)
+    uname = User.objects.get(pk=user_id)
     all_groups = UserGroup1.objects.all()
     all_lists = List1.objects.all()
     template = loader.get_template('userpage/index.html')
-    user_id = int(user_id)
     context = {
         'all_groups': all_groups,
         'user_id': user_id,
         'all_lists': all_lists,
+        'uname': uname,
     }
     return HttpResponse(template.render(context, request))
 

@@ -2,6 +2,8 @@ from django.conf.urls import url
 
 from . import views
 
+app_name = 'gametest'
+
 # (0-9)+ or (?P<pk>\d+)
 urlpatterns = [
 	url(r'^$', views.games_list, name='games_list'),
