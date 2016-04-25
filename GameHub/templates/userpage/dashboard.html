@@ -1,0 +1,14 @@
+<h1>Welcome {{ request.user }},</h1>
+
+<h4>
+    <a href="{% url 'gametest:games_list' %}">Create/List Games</a> |
+    <a href="{% url 'groups:create' %}">Create Groups</a> |
+    <a href="{% url 'groups:join' %}">Join Groups</a> |
+    <a href="#">Find Games</a> |
+    <a href="#">Find Groups</a>
+</h4>
+<h3>Groups You May Join</h3> <!-- Supposed to get the location of the user and then find group in the same location -->
+
+<h3>-----------</h3>
+
+<h3>Games You May List</h3> <!-- Supposed to select game info arbitrary (type, genre, platform) and then show similar games (Change every time) -->

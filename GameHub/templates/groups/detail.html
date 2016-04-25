@@ -9,12 +9,11 @@
 <b>Location: </b>{{ group.area }}
 <br>
 <br>
-<b>User Joined:</b>
+<b>Users Joined:</b>
 <br>
 {% for g in group.usergroup_set.all %}
     {% if g.group_id == group.pk %}
-        {{ g.user }}
-        <br>
+        <li><a href="{% url 'userpage:index' g.user.pk %}">{{ g.user }}</a></li>
     {% endif %}
 {% endfor %}
 {% block body %}
@@ -24,4 +23,4 @@
 <br>
 Want to join the group?
 <br>
-<a href="{% url 'groups:join' group.pk %}">JOIN</a>
+<a href="{% url 'groups:join' %}">JOIN</a>

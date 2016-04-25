@@ -13,5 +13,5 @@ urlpatterns = [
     url(r'^create/$', views.GroupCreate.as_view(), name='create'),
 
     # join
-    url(r'^(?P<pk>[0-9]+)/join/$', views.JoinGroup.as_view(), name='join'),
+    url(r'^join/$', views.JoinGroup.as_view(), name='join'),
 ]
