@@ -22,6 +22,8 @@
 				<th>{{ field.label }}</th>
 			{% endfor %}
 		{% endfor %}
+
+		<th>Genre</th>
 	</thread>
 	<tbody>
 		<tr>
@@ -34,6 +36,14 @@
 					<td>{{ field.value|default_if_none:'-' }}</td>
 				{% endfor %}
 			{% endfor %}
+
+			<td>
+				<ul>
+					{% for genre in genres %}
+						<li>{{ genre }}</li>
+					{% endfor %}
+				</ul>
+			</td>
 	</tbody>
 </table>
 

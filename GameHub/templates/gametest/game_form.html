@@ -41,7 +41,7 @@
 	var form_count = {{genres_formset.total_form_count}};
 	$('#add_genre').click(function() {
 		form_count++;
-		var form = '{{genres_formset.empty_form|escapejs}}'.replace(/__prefix__/g, form_count);
+		var form = '{{genres_formset.empty_form|escapejs}}'.replace(/__prefix__/g, form_count-1);
 		$('#genres').append(form)
 		$('#id_gn-TOTAL_FORMS').val(form_count);
 	});

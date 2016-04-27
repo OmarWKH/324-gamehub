@@ -51,11 +51,13 @@ def game_details(request, id):
 	except DoesNotExist:
 		pass
 
-	# will add boardgame form only if this is a boardgame
-	# if BoardGame.objects.filter(game=game_instance).exists():
-	# 	boardgame_form = BoardGameForm(request.GET or None, instance=BoardGame.objects.get(game=game_instance))
-	# 	context['boardgame_form'] = boardgame_form
-	
+	# genre
+	genres = []
+	genre_records = Type.objects.filter(game=game_instance)
+	for record in genre_records:
+		genres.append(record.genre)
+	context['genres'] = genres
+
 	# adds game type forms for for all game types in GAME_TYPES_MODELS array (defined at the top)
 	gametypes_forms = []
 	for model in GAME_TYPES_MODELS:
@@ -116,9 +118,14 @@ def manage_game(request, id=None):
 	for formset in gametypes_formsets:
 		gametypes_formsets_are_valid = formset.is_valid()
 
+
 	if game_form.is_valid() and genres_formset.is_valid() and gametypes_formsets_are_valid:
 		game_form.save()
-		genres_formset.save()
+		for form in genres_formset:
+			print(genres_formset.management_form)
+			print(form)
+			form.instance.game_id = game_form.instance.game_id
+			form.save()
 		for formset in gametypes_formsets:
 			formset.save()
 		return redirect('gametest:games_list')
