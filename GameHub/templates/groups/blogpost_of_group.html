@@ -1,0 +1,6 @@
+<h1>Blogposts of {{ gname }}</h1>
+{% for bp in all_bps %}
+    {% if bp.group.pk == group_id %}
+        <li><a href="{% url 'groups:BlogpostDetails' bp.pk %}">{{ bp.pk }} - {{ bp.group.name }} - {{ bp.user }}</a></li>
+    {% endif %}
+{% endfor %}
