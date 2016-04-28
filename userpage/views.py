@@ -40,7 +40,13 @@ def dashboard(request):
         if gl.user.id == request.user.pk:
             lst.append(gl.game.pk)
 
-    if len(lst) == 0:
+    for t in all_types:
+        for g in lst:
+            if g == t.game.game_id:
+                lst2.append(t.genre)
+
+
+    if len(lst) == 0 or len(lst2) == 0:
         context = {
             'groups': groups,
             'all_lists': all_lists,
@@ -48,12 +54,6 @@ def dashboard(request):
             'all_types': all_types,
         }
         return HttpResponse(template.render(context, request))
-
-    for t in all_types:
-        for g in lst:
-            if g == t.game.game_id:
-                lst2.append(t.genre)
-
 
     clst2 = len(lst2)
     rand = randint(0, clst2-1)
