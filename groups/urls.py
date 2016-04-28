@@ -12,7 +12,7 @@ urlpatterns = [
     url(r'^instance/(?P<instance_id>[0-9]+)$', views.InstanceDetails.as_view(), name='InstanceDetails'),
     url(r'^(?P<group_id>[0-9]+)/createInstance', views.CreateInstance.as_view(), name='CreateInstance'),
     url(r'^(?P<group_id>[0-9]+)/instances$', views.GroupInstances, name='GroupInstances'),
-
+    # url(r'^join/instance$', views.JoinInstance.as_view(), name='JoinInstance'),
 
     url(r'^(?P<group_id>[0-9]+)/createBlogpost', views.CreateBlogpost.as_view(), name='CreateBlogpost'),
     url(r'^blogpost/(?P<bp_id>[0-9]+)$', views.BlogpostDetails.as_view(), name='BlogpostDetails'),

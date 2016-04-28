@@ -56,7 +56,7 @@ class Instances(models.Model):
         return self.group.name + ' - ' + self.game.name + ' - ' + self.instance_location
 
     def get_absolute_url(self):
-        return reverse('groups:InstanceDetails', kwargs={'pk': self.pk})
+        return reverse('groups:InstanceDetails', kwargs={'instance_id': self.pk})
 
 class Blogpost(models.Model):
     text = models.TextField(db_column='Text')  # Field name made lowercase.
@@ -75,4 +75,4 @@ class Blogpost(models.Model):
         return str(self.post_id) + ' - ' + self.group.name + ' - ' + str(self.user)
 
     def get_absolute_url(self):
-        return reverse('groups:detail', kwargs={'pk': self.group.pk})
+        return reverse('groups:BlogpostDetails', kwargs={'bp_id': self.pk})

@@ -63,7 +63,7 @@ class InstanceDetails(generic.DetailView):
 class CreateInstance(CreateView):
     model = Instances
     template_name = 'groups/createInstance.html'
-    fields = ['group', 'game', 'instance_location', 'time', 'date']
+    fields = ['group', 'game', 'instance_location', 'date']
 
 class CreateBlogpost(CreateView):
     model = Blogpost
