@@ -33,22 +33,33 @@ def dashboard(request):
     all_lists = List.objects.all()
     all_games = Game.objects.all()
     all_types = Type.objects.all()
+    template = loader.get_template('userpage/dashboard.html')
 
     # to find genres
     for gl in all_lists:
         if gl.user.id == request.user.pk:
             lst.append(gl.game.pk)
 
+    if len(lst) == 0:
+        context = {
+            'groups': groups,
+            'all_lists': all_lists,
+            'all_games': all_games,
+            'all_types': all_types,
+        }
+        return HttpResponse(template.render(context, request))
+
     for t in all_types:
         for g in lst:
             if g == t.game.game_id:
                 lst2.append(t.genre)
 
+
     clst2 = len(lst2)
     rand = randint(0, clst2-1)
     genre = lst2[rand]
 
-    template = loader.get_template('userpage/dashboard.html')
+
     context = {
         'groups': groups,
         'all_lists': all_lists,
