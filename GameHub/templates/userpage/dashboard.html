@@ -14,6 +14,6 @@
 <h3>Games You May List</h3> <!-- Supposed to select game info arbitrary (type, genre, platform) and then show similar games (Change every time) -->
 {% for type in all_types %}
     {% if genre == type.genre %}
-        <li><a href="{% url 'gametest:user_list_game' type.game.pk %}">{{ type.game.name }}</a></li>
+        <li><a href="{% url 'gametest:user_list_game' type.game.pk %}">{{ type.game.name }}</a> | <a href="{% url 'gametest:game_details' type.game.pk %}">Details</a></li>
     {% endif %}
 {% endfor %}
