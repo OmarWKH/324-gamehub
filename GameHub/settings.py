@@ -55,6 +55,24 @@ REGISTRATION_AUTO_LOGIN = True
 LOGIN_REDIRECT_URL = 'userpage'
 LOGIN_URL = '/accounts/login/'
 
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'file': {
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            'filename': os.path.join(BASE_DIR, 'debug.log')
+        }
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['file'],
+            'level': 'DEBUG',
+        }
+    }
+}
+
 SITE_ID=1
 
 MIDDLEWARE_CLASSES = [
