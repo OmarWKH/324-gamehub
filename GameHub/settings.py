@@ -52,7 +52,7 @@ INSTALLED_APPS = [
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 ACCOUNT_ACTIVATION_DAYS = 7
 REGISTRATION_AUTO_LOGIN = True
-LOGIN_REDIRECT_URL = 'userpage'
+LOGIN_REDIRECT_URL = '/userpage'
 LOGIN_URL = '/accounts/login/'
 
 LOGGING = {

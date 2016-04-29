@@ -1,5 +1,5 @@
 from django.shortcuts import render
+from django.core.urlresolvers import reverse, reverse_lazy
 
 def view_profile(request):
-    context = {'user': request.user}
-    return render(request, "userpage.html", context)
+    return render(request, 'userpage:dashboard')
