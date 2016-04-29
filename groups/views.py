@@ -94,7 +94,7 @@ class CreateInstance(CreateView):
     def get_form(self, form_class):
         form = super(generic.CreateView, self).get_form(form_class)
         form.fields['group'].queryset = UserGroup.objects.filter(user=self.request.user)
-        form.fields['instance'].queryset = UserGroup.objects.filter(pk=self.kwargs['group_id'])
+        form.fields['instance'].queryset = Group.objects.filter(pk=self.kwargs['group_id'])
         return form
 
 
@@ -105,7 +105,6 @@ class CreateBlogpost(CreateView):
     fields = ['text', 'is_public', 'group', 'user']
 
     def get_initial(self):
-
         # try:
         #     group = UserGroup.objects.get(user=self.request.user, group=self.kwargs['group_id'])
         # except:
@@ -119,7 +118,7 @@ class CreateBlogpost(CreateView):
         form = super(generic.CreateView, self).get_form(form_class)
         current_username = self.request.user.username
         form.fields['user'].queryset = User.objects.filter(username=current_username)
-        form.fields['group'].queryset = Group.objects.filter(pk=self.kwargs['group_id'])
+        form.fields['group'].queryset = UserGroup.objects.filter(user=self.request.user.pk)
         return form
 
 class BlogpostDetails(DetailView):
