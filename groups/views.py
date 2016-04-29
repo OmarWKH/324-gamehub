@@ -5,7 +5,7 @@ from django.shortcuts import redirect, render, get_object_or_404
 from django.core.urlresolvers import reverse, reverse_lazy
 from django.views import generic
 from django.conf import settings
-from django.http import HttpResponse, HttpResponseRedirect, HttpResponseForbidden
+from django.http import HttpResponse, HttpResponseRedirect, HttpResponseForbidden, Http404
 from django.views.generic import CreateView, UpdateView, DetailView
 from django.template import loader
 
@@ -84,7 +84,18 @@ class CreateInstance(CreateView):
     fields = ['group', 'instance', 'game', 'instance_location', 'date', 'time']
 
     def get_initial(self):
+        # try:
+        #     group = UserGroup.objects.get(user=self.request.user, group=self.kwargs['group_id'])
+        # except:
+        #     raise Http404
+
         return {'instance': self.kwargs['group_id']}
+
+    def get_form(self, form_class):
+        form = super(generic.CreateView, self).get_form(form_class)
+        form.fields['group'].queryset = UserGroup.objects.filter(user=self.request.user)
+        form.fields['instance'].queryset = UserGroup.objects.filter(pk=self.kwargs['group_id'])
+        return form
 
 
 
@@ -94,14 +105,21 @@ class CreateBlogpost(CreateView):
     fields = ['text', 'is_public', 'group', 'user']
 
     def get_initial(self):
+
+        # try:
+        #     group = UserGroup.objects.get(user=self.request.user, group=self.kwargs['group_id'])
+        # except:
+        #     raise Http404
+
         return {'user': self.request.user,
-                'group': self.kwargs['group_id']
-                }
+                'group': self.kwargs['group_id']}
+
 
     def get_form(self, form_class):
         form = super(generic.CreateView, self).get_form(form_class)
         current_username = self.request.user.username
         form.fields['user'].queryset = User.objects.filter(username=current_username)
+        form.fields['group'].queryset = Group.objects.filter(pk=self.kwargs['group_id'])
         return form
 
 class BlogpostDetails(DetailView):

@@ -37,7 +37,7 @@ class UserGroup(models.Model):
         unique_together = (('user', 'group'),)
 
     def __str__(self):
-        return str(self.id)
+        return self.group.name
 
 class Instances(models.Model):
     time = models.DateTimeField(db_column='Time')  # Field name made lowercase.
