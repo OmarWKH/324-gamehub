@@ -1,4 +1,6 @@
+{% extends "groups/base.html" %}
 
+{% block content %}
 <h1>Info About {{ uname }}</h1>
 Full Name:
 <br>
@@ -9,19 +11,23 @@ Location:
 Nickname:
 <br>
 Schedule:
+    <br>
 <h3>Groups {{ uname }} Joined: </h3>
+    <ol class="rounded-list">
 {% for group in all_groups %}
     {% if group.user.id == user_id %}
         <li><a href="{% url 'groups:index' %}{{ group.group.pk }}">{{ group.group }}</a></li>
 
     {% endif %}
 {% endfor %}
-
-<h3>----------</h3>
+</ol>
 
 <h3>Games {{ uname }} Listed: </h3>
+    <ol class="rounded-list">
 {% for list in all_lists %}
     {% if list.user.id == user_id %}
         <li><a href="{% url 'gametest:game_details' list.game.pk %}">{{ list.game.name }}</a></li>
     {% endif %}
 {% endfor %}
+    </ol>
+{% endblock %}

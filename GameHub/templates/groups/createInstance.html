@@ -1,12 +1,23 @@
-<h1>Create an Instance</h1>
+{% extends 'base.html' %}
 
-<form action="" method="post" enctype="multipart/form-data">
-{% csrf_token %}
+{% block content %}
+
+
+<form class="form-basic" action="" method="post" enctype="multipart/form-data">
+<div class="form-title-row">
+    <h1>Create an Instance</h1>
+</div>
+    {% csrf_token %}
 {% for field in form %}
+    <div class="form-row">
     <span>{{ field.errors }}</span>
 
     <label>{{ field.label_tag }}</label>
     <div>{{ field }}</div>
+    </div>
 {% endfor %}
+<div class="form-row">
 <button type="submit">Create</button>
+    </div>
 </form>
+{% endblock %}

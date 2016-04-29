@@ -1,19 +1,30 @@
+{% extends "groups/base.html" %}
+
+{% block content %}
 <h1>Welcome {{ request.user }},</h1>
 
-<h4>
-    <a href="{% url 'gametest:games_list' %}">Create/List Games</a> |
-    <a href="{% url 'groups:index' %}">List of groups</a> |
-    <a href="{% url 'groups:create' %}">Create Groups</a> |
-    <a href="{% url 'groups:join' 0%}">Join Groups</a> |
-    <a href="{% url 'gametest:games_list' %}">Find Games</a>
-</h4>
+
+    <a class="button1" href="{% url 'gametest:games_list' %}">Create/List Games</a> |
+    <a class="button1" href="{% url 'groups:index' %}">List of groups</a> |
+    <a class="button1" href="{% url 'groups:create' %}">Create Groups</a> |
+    <a class="button1" href="{% url 'groups:join' 0%}">Join Groups</a> |
+    <a class="button1" href="{% url 'gametest:games_list' %}">Find Games</a>
+
+
+    <br>
 <h3>Groups You May Join</h3> <!-- Supposed to get the location of the user and then find group in the same location -->
 
-<h3>-----------</h3>
+
 
 <h3>Games You May List</h3> <!-- Supposed to select game info arbitrary (type, genre, platform) and then show similar games (Change every time) -->
+<ol class="rounded-list">
 {% for type in all_types %}
     {% if genre == type.genre %}
-        <li><a href="{% url 'gametest:user_list_game' type.game.pk %}">{{ type.game.name }}</a> | <a href="{% url 'gametest:game_details' type.game.pk %}">Details</a></li>
+        <li><a href="{% url 'gametest:user_list_game' type.game.pk %}">{{ type.game.name }}</a></li>
+        <ol>
+        <li><a href="{% url 'gametest:game_details' type.game.pk %}">Details</a></li>
+        </ol>
     {% endif %}
 {% endfor %}
+</ol>
+{% endblock %}
