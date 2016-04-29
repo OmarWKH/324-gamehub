@@ -16,7 +16,7 @@ Including another URLconf
 from django.conf.urls import include, url
 from django.contrib import admin
 from . import views
-
+import regbackend
 from django.conf.urls.static import static
 from django.conf import settings
 
@@ -24,6 +24,7 @@ urlpatterns = [
     url(r'^gametest/', include('gametest.urls', namespace='gametest')),
     url(r'^admin/', admin.site.urls),
     url(r'^accounts/', include('registration.backends.simple.urls')),
+        url(r'^accounts/register/$', regbackend.MyRegistrationView.as_view(), name='registration_register'),
     url(r'^groups/', include('groups.urls')),
     url(r'^userpage/', include('userpage.urls')),
 ]
