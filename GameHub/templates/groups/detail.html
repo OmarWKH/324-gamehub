@@ -1,3 +1,6 @@
+{% extends "groups/base.html" %}
+
+{% block content %}
 <h1>Details of {{ group.name}}</h1>
 
 <b>ID: </b> {{ group.pk }}
@@ -28,3 +31,4 @@
 <a href="{% url 'groups:join' group.pk %}">JOIN</a>
 <br>
 <a href="{% url 'groups:CreateInstance' group.pk %}">Make it an instance</a>
+{% endblock %}
