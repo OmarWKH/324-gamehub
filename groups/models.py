@@ -37,7 +37,7 @@ class UserGroup(models.Model):
         unique_together = (('user', 'group'),)
 
     def __str__(self):
-        return str(self.id)
+        return self.group.name
 
 class Instances(models.Model):
     time = models.DateTimeField(db_column='Time')  # Field name made lowercase.
@@ -45,7 +45,8 @@ class Instances(models.Model):
     instance_location = models.CharField(db_column='INSTANCE_Location', max_length=20)  # Field name made lowercase.
     group = models.ForeignKey(Group, models.DO_NOTHING, db_column='GROUP_ID')  # Field name made lowercase.
     game = models.ForeignKey(Game, models.DO_NOTHING, db_column='GAME_ID', blank=True, null=True)  # Field name made lowercase.
-    instance = models.AutoField(db_column='INSTANCE_ID', primary_key=True)  # Field name made lowercase.
+    instance = models.ForeignKey(Group, related_name='instances_instance', db_column='INSTANCE_ID',
+                                 primary_key=True)  # Field name made lowercase.
 
     class Meta:
         managed = False
@@ -75,4 +76,4 @@ class Blogpost(models.Model):
         return str(self.post_id) + ' - ' + self.group.name + ' - ' + str(self.user)
 
     def get_absolute_url(self):
-        return reverse('groups:BlogpostDetails', kwargs={'bp_id': self.pk})
+        return reverse('groups:BlogpostDetails', kwargs={'bp_id': self.post_id})

@@ -1,8 +1,15 @@
+{% extends "groups/base.html" %}
+
+{% block content %}
+
 <h1>Instances of {{ gname }}</h1>
+<ol class="rounded-list">
+
 {% for instance in all_instances %}
     {% if instance.group.pk == group_id %}
         <li><a href="{% url 'groups:InstanceDetails' instance.pk %}">{{ instance.game.name }} - {{ instance.instance_location }}</a></li>
     {% endif %}
 {% endfor %}
 
-{#<a href="{% url 'groups:JoinInstance' %}">JOIN AN INSTANCE</a>#}
+</ol>
+{% endblock %}

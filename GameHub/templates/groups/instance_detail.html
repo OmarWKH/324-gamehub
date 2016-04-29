@@ -1,13 +1,21 @@
-<h1>Details of {{ instances.pk }}</h1>
+<h1>Details of {{ instances.instance }}</h1>
 
-<b>ID: </b> {{ instances.pk }}
+<b>ID: </b> {{ instances.instance.pk }}
+<br>
+<b>Creator: </b> {{ instances.instance.creator }}
+<br>
+<b>Description: </b> {{ instances.instance.description }}
 <br>
 <b>Time: </b> {{ instances.time }}
 <br>
 <b>Date: </b> {{ instances.date }}
 <br>
+<b>Area: </b>{{ instances.group.area }}
+<br>
 <b>Location: </b>{{ instances.instance_location }}
 <br>
-<b>Group: </b>{{ instances.group.name }}
+<b>Group: </b>{{ instances.instance }}
 <br>
-<b>Game: </b>{{ instances.game.name }}
+<b>Owner Group: </b><a href="{% url 'groups:detail' instances.group.pk %}">{{ instances.group.name }}</a>
+<br>
+<b>Game: </b><a href="{% url 'gametest:game_details' instances.game.pk %}">{{ instances.game.name }}</a>
