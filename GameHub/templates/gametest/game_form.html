@@ -2,6 +2,33 @@
 
 {% block title %}Create Game{% endblock %}
 
+{% comment %}
+{% block content %}
+<form method='POST'>
+	{% csrf_token %}
+	{{ game_form }}
+	<table id='type'>
+		<tr><td><a href="javascript:void(0)" id="add_type">Add Type</a></td></tr>
+		{{ type_formset.management_form }}
+		{% for form in type_formset %}
+			{{ form.as_table }}
+		{% endfor %}
+	</table>
+	<input type='submit' value='Save'>
+</form>
+
+<script>
+	var form_count = {{type_formset.total_form_count}};
+	$('#add_type').click(function() {
+		form_count++;
+		var form = '{{type_formset.empty_form|escapejs}}'.replace(/__prefix__/g, form_count-1);
+		$('#type').append(form)
+		$('#id_type-TOTAL_FORMS').val(form_count);
+	});
+</script>
+{% endblock %}
+{% endcomment %}
+
 {% block content %}
 <form method='POST'>
 	{% csrf_token %} <!-- some verification thing  -->

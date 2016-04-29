@@ -109,14 +109,10 @@ def get_gametype_form(GameType, game_instance, request):
 	if GameType.objects.filter(game=game_instance).exists():
 		GameTypeForm = modelform_factory(GameType, exclude=('game',))
 		gametype_form = GameTypeForm(request.GET or None, instance=GameType.objects.get(game=game_instance))
-		# form_name = GameType.type().lower() + '_form'
-		# context[form_name] = gametype_form
 		return gametype_form
 
 
 def manage_game(request, id=None):
-	logger.debug(datetime.now().time())
-	#logger.debug('!-request.POST.start-!'); logger.debug(request.POST)
 	if id:
 		game_instance = get_object_or_404(Game, game_id=id)
 	else:
@@ -137,24 +133,13 @@ def manage_game(request, id=None):
 		'gametypes_formsets': gametypes_formsets
 	}
 
-	#logger.debug('!-request.POST.formscontext-!'); logger.debug(request.POST)
-
-	#genres_formset.management_form['type-TOTAL_FORMS'] = request.POST.get('type-TOTAL_FORMS')
-
 	gametypes_formsets_are_valid = True
 	for formset in gametypes_formsets:
 		gametypes_formsets_are_valid = formset.is_valid()
 
 	if game_form.is_valid() and genres_formset.is_valid() and gametypes_formsets_are_valid:
-		logger.debug('!-request.POST-!'); logger.debug(request.POST)
-		logger.debug('!-boardgame_formset-!'); logger.debug(gametypes_formsets[0])
-		#logger.debug('!-genres_formset-!'); logger.debug(genres_formset)
-		#logger.debug('!-genres_formset.management_form-!'); logger.debug(genres_formset.management_form)
 		game_form.save()
 		for form in genres_formset:
-			#logger.debug('!-genres_formset.form#-!'); logger.debug(form)
-			#print(genres_formset.management_form)
-			#print(form)
 			form.instance.game_id = game_form.instance.game_id
 			form.save()
 		for formset in gametypes_formsets:
@@ -165,7 +150,10 @@ def manage_game(request, id=None):
 def get_game_formset(model, game_instance, request):
 	model_prefix = model.type().lower()
 	GameModelFormSet = inlineformset_factory(Game, model, exclude=()) #('game_id',))
-	request_with_data = get_formset_data(request, model_prefix)
+	if (model_prefix+'-TOTAL_FORMS') not in request.POST:
+		request_with_data = get_formset_data(request, model_prefix)
+	else:
+		request_with_data = request.POST
 	model_formset = GameModelFormSet(request_with_data, instance=game_instance, prefix=model_prefix)
 	return model_formset
 
@@ -176,7 +164,7 @@ def get_formset_data(request, prefix):
 	initial = prefix+'-INITIAL_FORMS'
 	max_num = prefix+'-MAX_NUM_FORMS'
 	request_values = request.POST.copy()
-	request_values[total] = '2'
+	request_values[total] = '1'
 	request_values[initial] = '0'
 	request_values[max_num] = ''
 	return request_values
