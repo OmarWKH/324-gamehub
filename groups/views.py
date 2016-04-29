@@ -42,7 +42,8 @@ class JoinGroup(CreateView):
     fields = ['user', 'group']
 
     def get_initial(self):
-        return {'user': self.request.user}
+        return {'user': self.request.user,
+                'group': self.kwargs['group_id']}
 
     def get_form(self, form_class):
         form = super(generic.CreateView, self).get_form(form_class)
@@ -82,6 +83,9 @@ class CreateInstance(CreateView):
     template_name = 'groups/createInstance.html'
     fields = ['group', 'instance', 'game', 'instance_location', 'date', 'time']
 
+    def get_initial(self):
+        return {'instance': self.kwargs['group_id']}
+
 
 
 class CreateBlogpost(CreateView):
@@ -91,6 +95,7 @@ class CreateBlogpost(CreateView):
 
     def get_initial(self):
         return {'user': self.request.user,
+                'group': self.kwargs['group_id']
                 }
 
     def get_form(self, form_class):

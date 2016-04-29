@@ -9,7 +9,7 @@ urlpatterns = [
     url(r'^$', views.IndexView.as_view(), name='index'),
     url(r'(?P<pk>[0-9]+)/$', views.GroupDetail.as_view(), name='detail'),
     url(r'^create/$', views.GroupCreate.as_view(), name='create'),
-    url(r'^join/$', views.JoinGroup.as_view(), name='join'),
+    url(r'^(?P<group_id>[0-9]+)/join/$', views.JoinGroup.as_view(), name='join'),
 
     url(r'^instance/(?P<instance_id>[0-9]+)$', views.InstanceDetails.as_view(), name='InstanceDetails'),
     url(r'^(?P<group_id>[0-9]+)/createInstanceGroup/$', views.GroupCreate.as_view(), name='CreateInstanceGr'),
