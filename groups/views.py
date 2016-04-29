@@ -5,7 +5,7 @@ from django.shortcuts import redirect, render, get_object_or_404
 from django.core.urlresolvers import reverse, reverse_lazy
 from django.views import generic
 from django.conf import settings
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect, HttpResponseForbidden
 from django.views.generic import CreateView, UpdateView, DetailView
 from django.template import loader
 
@@ -57,18 +57,47 @@ class InstanceDetails(generic.DetailView):
     pk_url_kwarg = "instance_id"
     template_name = 'groups/instance_detail.html'
 
-    # def get_object(self):
-    #     return get_object_or_404(Instances, pk=instance_id)
+
+class CreateInstanceGr(CreateView):
+
+    model = Group
+    fields = ['name', 'description', 'area', 'is_public', 'creator']
+
+    def get_initial(self):
+        return {'creator': self.request.user,
+                }
+
+    def get_form(self, form_class):
+        form = super(generic.CreateView, self).get_form(form_class)
+        current_username = self.request.user.username
+        form.fields['creator'].queryset = User.objects.filter(username=current_username)
+        return form
+
+
+
 
 class CreateInstance(CreateView):
+
     model = Instances
     template_name = 'groups/createInstance.html'
-    fields = ['group', 'game', 'instance_location', 'date']
+    fields = ['group', 'instance', 'game', 'instance_location', 'date', 'time']
+
+
 
 class CreateBlogpost(CreateView):
     model = Blogpost
     template_name = 'groups/createBlogpost.html'
     fields = ['text', 'is_public', 'group', 'user']
+
+    def get_initial(self):
+        return {'user': self.request.user,
+                }
+
+    def get_form(self, form_class):
+        form = super(generic.CreateView, self).get_form(form_class)
+        current_username = self.request.user.username
+        form.fields['user'].queryset = User.objects.filter(username=current_username)
+        return form
 
 class BlogpostDetails(DetailView):
     model = Blogpost

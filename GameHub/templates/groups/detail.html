@@ -19,11 +19,12 @@
 {% endfor %}
 <br>
 <li><a href="{% url 'groups:GroupInstances' group.pk %}">Instances</a></li>
-<li><a href="{% url 'groups:CreateInstance' group.pk %}">Create Instance</a></li>
+<li><a href="{% url 'groups:CreateInstanceGr' group.pk %}">Create Instance</a></li>
 <li><a href="{% url 'groups:GroupBlogposts' group.pk %}">Blogposts</a></li>
 <li><a href="{% url 'groups:CreateBlogpost' group.pk %}">Create Blogpost</a></li>
 <br>
 <br>
-Want to join the group?
 <br>
 <a href="{% url 'groups:join' %}">JOIN</a>
+<br>
+<a href="{% url 'groups:CreateInstance' group.pk %}">Make it an instance</a>
