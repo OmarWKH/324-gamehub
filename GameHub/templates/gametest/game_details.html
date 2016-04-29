@@ -49,11 +49,11 @@
 
 <h3>Players</h3>
 {% if players_list %}
-	<li>
+	<ul>
 		{% for item in players_list %}
-			<ul>{{ item.user }}</ul>
+			<li>{{ item.user }}</li>
 		{% endfor %}
-	</li>
+	</ul>
 {% else %}
 	no players
 {% endif %}

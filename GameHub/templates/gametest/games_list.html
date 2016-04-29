@@ -3,16 +3,43 @@
 {% block title %}Game List{% endblock %}
 
 {% block content %}
-<ul>
-	{% for game in games_list %}
-		<li>
-			<a href='{% url 'gametest:edit_game' game.game_id %}'>[edit] </a>
-			<a href='{% url 'gametest:user_list_game' game.game_id %}'>[add to my games] </a>
-			<a href='{% url 'gametest:game_details' game.game_id %}'>{{ game.name }}</a>
-		</li>
-	{% empty %}
-		No games exist
-	{% endfor %}
-</ul>
+<table>
+	<thread>
+		{% for field in search_form %}
+			<th>{{ field.label }}</th>
+		{% endfor %}
+	</thread>
+	<tbody>
+		<tr>
+			<form method='POST'>
+			{% csrf_token %}
+			{% for field in search_form %}
+				<td>{{ field }}</td>
+			{% endfor %}
+				<td><input type='submit' value='Search'></td>
+			</form>
+		</tr>
+		{% for game_form in forms_list %}
+			<tr>
+			{% for field in game_form %}
+				<td>
+					{% if field.label == 'Name' %}
+						<a href='{% url 'gametest:game_details' game_form.instance.game_id %}'>{{ field.value }}</a>
+					{% else %}
+						{{ field.value|default_if_none:'-' }}</td>
+					{% endif %}
+			{% endfor %}
+			<td>
+				<a href='{% url 'gametest:edit_game' game_form.instance.game_id %}'>[edit] </a>
+				<a href='{% url 'gametest:user_list_game' game_form.instance.game_id %}'>[add to my games] </a>
+			</td>
+			</tr>
+		{% empty %}
+			No games exist
+		{% endfor %}
+	</tbody>
+</table>
+
+	
 <a href='{% url 'gametest:create_game' %}'>Create Game</a>
 {% endblock %}

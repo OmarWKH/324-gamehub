@@ -107,6 +107,10 @@ class Platform(models.Model):
     os = models.CharField(db_column='OS', max_length=20)  # Field name made lowercase.
     game = models.ForeignKey('VideoGame', models.DO_NOTHING, db_column='GAME_ID')  # Field name made lowercase.
 
+    @classmethod
+    def type(self):
+        return self.__name__
+
     class Meta:
         managed = False
         db_table = 'PLATFORM'
@@ -117,6 +121,10 @@ class Type(models.Model):
     id = models.AutoField(primary_key=True, db_column='ID') # Surrogate key for django
     genre = models.CharField(db_column='Genre', max_length=20)  # Field name made lowercase.
     game = models.ForeignKey(Game, models.DO_NOTHING, db_column='GAME_ID')  # Field name made lowercase.
+
+    @classmethod
+    def type(self):
+        return self.__name__
 
     class Meta:
         managed = False
@@ -132,6 +140,10 @@ class List(models.Model):
     game = models.ForeignKey(Game, models.DO_NOTHING, db_column='GAME_ID')  # Field name made lowercase.
     # user = models.ForeignKey('', models.DO_NOTHING, db_column='USER_ID')  # Field name made lowercase.
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+
+    @classmethod
+    def type(self):
+        return self.__name__
 
     class Meta:
         managed = False

@@ -2,7 +2,6 @@
 
 {% block title %}Create Game{% endblock %}
 
-
 {% block content %}
 <form method='POST'>
 	{% csrf_token %} <!-- some verification thing  -->
@@ -26,13 +25,6 @@
 				{{ form }}
 			{% endfor %}
 		{% endfor %}
-		{% comment %}
-		{{ boardgame_formset.management_form }}
-		<h3>Board Game</h3>
-		{% for form in boardgame_formset.forms %}
-			{{ form }}
-		{% endfor %}
-		{% endcomment %}
 	</table>
 	<input type='submit' value='Save'>
 </form>
@@ -43,7 +35,7 @@
 		form_count++;
 		var form = '{{genres_formset.empty_form|escapejs}}'.replace(/__prefix__/g, form_count-1);
 		$('#genres').append(form)
-		$('#id_gn-TOTAL_FORMS').val(form_count);
+		$('#id_type-TOTAL_FORMS').val(form_count);
 	});
 </script>
 {% endblock %}
