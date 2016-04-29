@@ -31,7 +31,7 @@
 			{% endfor %}
 			<td>
 				<a href='{% url 'gametest:edit_game' game_form.instance.game_id %}'>[edit] </a>
-				<a href='{% url 'gametest:user_list_game' game_form.instance.game_id %}'>[add to my games] </a>
+				<a href='{% url 'gametest:user_list_game' game_form.instance.game_id %}'>[add] </a>
 			</td>
 			</tr>
 		{% empty %}

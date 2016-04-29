@@ -119,7 +119,7 @@ class Platform(models.Model):
 
 class Type(models.Model):
     id = models.AutoField(primary_key=True, db_column='ID') # Surrogate key for django
-    genre = models.CharField(db_column='Genre', max_length=20)  # Field name made lowercase.
+    genre = models.CharField(db_column='Genre', max_length=20, blank=False)  # Field name made lowercase.
     game = models.ForeignKey(Game, models.DO_NOTHING, db_column='GAME_ID')  # Field name made lowercase.
 
     @classmethod

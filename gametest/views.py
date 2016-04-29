@@ -10,8 +10,7 @@ import logging
 from datetime import datetime
 logger = logging.getLogger('django')
 # a way to choose if game is boardgame or not without having to fill pieces
-# edit_game doesn't show the existing instance of board_game
-# genre/platform
+# platform
 
 # delete game
 # in user_list_game hide user field
@@ -111,63 +110,76 @@ def get_gametype_form(GameType, game_instance, request):
 		gametype_form = GameTypeForm(request.GET or None, instance=GameType.objects.get(game=game_instance))
 		return gametype_form
 
-
 def manage_game(request, id=None):
 	if id:
 		game_instance = get_object_or_404(Game, game_id=id)
 	else:
 		game_instance = Game()
-
 	game_form = GameForm(request.POST or None, instance=game_instance)
+	context = {'game_form': game_form}
 
-	# creating an inline formset for game types linked to the empty instance game_instance
-	genres_formset = get_game_formset(Type, game_instance, request)
+	genres_formset = get_full_game_formset_or_empty(Type, game_instance, request)	
 	gametypes_formsets = []
-	for model in GAME_TYPES_MODELS:
-		formset = get_game_formset(model, game_instance, request)
+	for Model in GAME_TYPES_MODELS:
+		formset = get_full_game_formset_or_empty(Model, game_instance, request)
 		gametypes_formsets.append(formset)
+	context['genres_formset'] = genres_formset
+	context['gametypes_formsets'] = gametypes_formsets
 
-	context = {
-		'game_form': game_form,
-		'genres_formset': genres_formset,
-		'gametypes_formsets': gametypes_formsets
-	}
-
-	gametypes_formsets_are_valid = True
-	for formset in gametypes_formsets:
-		gametypes_formsets_are_valid = formset.is_valid()
-
-	if game_form.is_valid() and genres_formset.is_valid() and gametypes_formsets_are_valid:
-		game_form.save()
-		for form in genres_formset:
-			form.instance.game_id = game_form.instance.game_id
-			form.save()
+	if request.method == 'POST':
+		gametypes_formsets_are_valid = True
 		for formset in gametypes_formsets:
-			formset.save()
-		return redirect('gametest:games_list')
+			gametypes_formsets_are_valid = formset.is_valid()
+
+		if game_form.is_valid() and genres_formset.is_valid() and gametypes_formsets_are_valid:
+			game_form.save()
+			for form in genres_formset:
+				if form.instance.genre is not u'':
+					form.instance.game_id = game_form.instance.game_id
+					if form in genres_formset.deleted_forms:
+						form.instance.delete()
+					else:
+						form.save()
+			for formset in gametypes_formsets:
+				formset.save()
+			return redirect('gametest:games_list')
+
 	return render(request, 'gametest/game_form.html', context)
 
-def get_game_formset(model, game_instance, request):
-	model_prefix = model.type().lower()
-	GameModelFormSet = inlineformset_factory(Game, model, exclude=()) #('game_id',))
-	if (model_prefix+'-TOTAL_FORMS') not in request.POST:
-		request_with_data = get_formset_data(request, model_prefix)
+def get_full_game_formset_or_empty(Model, game_instance, request):
+		if request.method == 'POST':
+			number_of_forms = Model.objects.filter(game=game_instance).count()
+			if id and (number_of_forms > 0):
+				return get_game_formset(Model, game_instance, request, number_of_forms, number_of_forms)
+			else:
+				return get_game_formset(Model, game_instance, request)
+		else:
+			return get_game_formset(Model, game_instance)
+
+def get_game_formset(Model, game_instance, request=None, total_forms='1', initial_forms='0'):
+	model_prefix = Model.type().lower()
+	GameModelFormSet = inlineformset_factory(Game, Model, exclude=(), extra=1) #('game_id',))
+	if request is None:
+		return GameModelFormSet(instance=game_instance, prefix=model_prefix)
 	else:
-		request_with_data = request.POST
-	model_formset = GameModelFormSet(request_with_data, instance=game_instance, prefix=model_prefix)
-	return model_formset
+		if (model_prefix+'-TOTAL_FORMS') not in request.POST:
+			request_with_data = get_formset_data(request, model_prefix, total_forms, initial_forms)
+		else:
+			request_with_data = request.POST
+		model_formset = GameModelFormSet(request_with_data, instance=game_instance, prefix=model_prefix)
+		return model_formset
 
 # add management data to post request, needed for inline formsets (used for game types above)
 # inline formset can add multiple forms, which explains total, initial, max_num below
-def get_formset_data(request, prefix):
+def get_formset_data(request, prefix, total_forms='1', initial_forms='0'):
 	total = prefix+'-TOTAL_FORMS'
 	initial = prefix+'-INITIAL_FORMS'
 	max_num = prefix+'-MAX_NUM_FORMS'
-	request_values = request.POST.copy()
-	request_values[total] = '1'
-	request_values[initial] = '0'
-	request_values[max_num] = ''
-	return request_values
+	request.POST = request.POST.copy()
+	request.POST[total] = total_forms
+	request.POST[initial] = initial_forms
+	request.POST[max_num] = ''
+	return request.POST
 
 
 def user_list_game(request, id):
