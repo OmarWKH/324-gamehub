@@ -2,8 +2,9 @@
 
 <b>User: </b> {{ blogpost.user }}
 <br>
-<b>Group: </b>{{ blogpost.group.name }}
+<b>Group: </b><a href="{% url 'groups:detail' blogpost.group.pk %}"> {{ blogpost.group.name }}</a>
 <br>
 <b>Time: </b>{{ blogpost.bp_time }}
+<br>
 <b>Text: </b><br>{{ blogpost.text | linebreaksbr }}
 <br>
