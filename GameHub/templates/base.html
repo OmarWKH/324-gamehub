@@ -559,18 +559,18 @@
 </head>
 
 <body>
-{#	<header>#}
-{#		{% block header %}<h1>Header block</h1>{% endblock %}#}
-{#	</header>#}
-{#	<nav>#}
-{#		{% block nav %}Navigation block{% endblock %}#}
-{#	</nav>#}
+	<header>
+		{% block header %}<h1>Header block</h1>{% endblock %}
+	</header>
+	<nav>
+		{% block nav %}Navigation block{% endblock %}
+	</nav>
 	<main>
 		{% block content %}Main block | Override me :D{% endblock %}
 	</main>
-{#	<footer>#}
-{#		{% block footer %}Footer block{% endblock %}#}
-{#	</footer>#}
+	<footer>
+		{% block footer %}Footer block{% endblock %}
+	</footer>
 </body>
 
 </html>

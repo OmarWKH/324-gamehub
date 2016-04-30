@@ -27,7 +27,7 @@ class GroupDetail(generic.DetailView):
 class GroupCreate(CreateView):
     model = Group
     fields = ['name', 'description', 'area', 'is_public', 'creator']
-    
+
     def get_initial(self):
         return {'creator': self.request.user }
 
@@ -82,7 +82,7 @@ class CreateInstance(CreateView):
 
     model = Instances
     template_name = 'groups/createInstance.html'
-    fields = ['group', 'instance', 'game', 'instance_location', 'date']
+    fields = ['group', 'instance', 'game', 'instance_location', 'time']
 
     def get_initial(self):
         # try:
@@ -92,7 +92,7 @@ class CreateInstance(CreateView):
         now = datetime.datetime.now()
 
         return {'instance': self.kwargs['group_id'],
-                'date': now.strftime("%Y-%m-%d")}
+                'time': now.strftime("%Y-%m-%d %H:%M")}
 
     def get_form(self, form_class):
         form = super(generic.CreateView, self).get_form(form_class)

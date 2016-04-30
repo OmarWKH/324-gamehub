@@ -41,7 +41,6 @@ class UserGroup(models.Model):
 
 class Instances(models.Model):
     time = models.DateTimeField(db_column='Time')  # Field name made lowercase.
-    date = models.DateField(db_column='Date')  # Field name made lowercase.
     instance_location = models.CharField(db_column='INSTANCE_Location', max_length=20)  # Field name made lowercase.
     group = models.ForeignKey(Group, models.DO_NOTHING, db_column='GROUP_ID')  # Field name made lowercase.
     game = models.ForeignKey(Game, models.DO_NOTHING, db_column='GAME_ID', blank=True, null=True)  # Field name made lowercase.
