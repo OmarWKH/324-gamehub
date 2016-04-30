@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from .models import Group, UserGroup, Instances, Blogpost
+from gametest.models import Game, List
 from django.contrib.auth.models import User
 from django.shortcuts import redirect, render, get_object_or_404
 from django.core.urlresolvers import reverse, reverse_lazy
@@ -8,7 +9,7 @@ from django.conf import settings
 from django.http import HttpResponse, HttpResponseRedirect, HttpResponseForbidden, Http404
 from django.views.generic import CreateView, UpdateView, DetailView
 from django.template import loader
-
+import datetime
 
 
 class IndexView(generic.ListView):
@@ -81,20 +82,25 @@ class CreateInstance(CreateView):
 
     model = Instances
     template_name = 'groups/createInstance.html'
-    fields = ['group', 'instance', 'game', 'instance_location', 'date', 'time']
+    fields = ['group', 'instance', 'game', 'instance_location', 'date']
 
     def get_initial(self):
         # try:
         #     group = UserGroup.objects.get(user=self.request.user, group=self.kwargs['group_id'])
         # except:
         #     raise Http404
+        now = datetime.datetime.now()
 
-        return {'instance': self.kwargs['group_id']}
+        return {'instance': self.kwargs['group_id'],
+                'date': now.strftime("%Y-%m-%d")}
 
     def get_form(self, form_class):
         form = super(generic.CreateView, self).get_form(form_class)
-        form.fields['group'].queryset = UserGroup.objects.filter(user=self.request.user)
+        x = UserGroup.objects.filter(user=self.request.user).values_list('group')
+        y = List.objects.filter(user=self.request.user).values_list('game')
+        form.fields['group'].queryset = Group.objects.filter(group_id__in=x)
         form.fields['instance'].queryset = Group.objects.filter(pk=self.kwargs['group_id'])
+        form.fields['game'].queryset = Game.objects.filter(game_id__in=y)
         return form
 
 
@@ -102,7 +108,7 @@ class CreateInstance(CreateView):
 class CreateBlogpost(CreateView):
     model = Blogpost
     template_name = 'groups/createBlogpost.html'
-    fields = ['text', 'is_public', 'group', 'user']
+    fields = ['text', 'is_public', 'group', 'user', 'bp_time']
 
     def get_initial(self):
         # try:
@@ -110,15 +116,18 @@ class CreateBlogpost(CreateView):
         # except:
         #     raise Http404
 
+        now = datetime.datetime.now()
         return {'user': self.request.user,
-                'group': self.kwargs['group_id']}
+                'group': self.kwargs['group_id'],
+                'bp_time': now.strftime("%Y-%m-%d %H:%M")}
 
 
     def get_form(self, form_class):
         form = super(generic.CreateView, self).get_form(form_class)
         current_username = self.request.user.username
+        x = UserGroup.objects.filter(user=self.request.user).values_list('group')
         form.fields['user'].queryset = User.objects.filter(username=current_username)
-        form.fields['group'].queryset = UserGroup.objects.filter(user=self.request.user.pk)
+        form.fields['group'].queryset = Group.objects.filter(group_id__in=x)
         return form
 
 class BlogpostDetails(DetailView):

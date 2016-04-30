@@ -3,6 +3,7 @@
 {% block content %}
 <h1>List of Groups</h1>
 
+    <div class="shadow">
 <ol class="rounded-list">
     {% for group in object_list %}
         {% if group.is_public == 1 %}
@@ -10,6 +11,6 @@
         {% endif %}
     {% endfor %}
 </ol>
-
+</div>
 <a class="button2" href="create/">Create a group</a>
 {% endblock %}

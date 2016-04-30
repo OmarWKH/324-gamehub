@@ -14,7 +14,7 @@
 <br>
 <b>Location: </b>{{ instances.instance_location }}
 <br>
-<b>Group: </b>{{ instances.instance }}
+<b>Group: </b><a href="{% url 'groups:detail' instances.instance.pk %}"> {{ instances.instance }}</a>
 <br>
 <b>Owner Group: </b><a href="{% url 'groups:detail' instances.group.pk %}">{{ instances.group.name }}</a>
 <br>
