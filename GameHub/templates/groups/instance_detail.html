@@ -3,21 +3,13 @@
 {% block content %}
 <h1>Details of {{ instances.instance }}</h1>
 
-<b>ID: </b> {{ instances.instance.pk }}
-<br>
-<b>Creator: </b> {{ instances.instance.creator }}
-<br>
-<b>Description: </b> {{ instances.instance.description }}
-<br>
-<b>Time: </b> {{ instances.time }}
-<br>
-<b>Area: </b>{{ instances.group.area }}
-<br>
-<b>Location: </b>{{ instances.instance_location }}
-<br>
-<b>Group: </b><a href="{% url 'groups:detail' instances.instance.pk %}"> {{ instances.instance }}</a>
-<br>
-<b>Owner Group: </b><a href="{% url 'groups:detail' instances.group.pk %}">{{ instances.group.name }}</a>
-<br>
-<b>Game: </b><a href="{% url 'gametest:game_details' instances.game.pk %}">{{ instances.game.name }}</a>
+<p class="note"><b>ID: </b> {{ instances.instance.pk }}</p>
+<p class="note"><b>Creator: </b> {{ instances.instance.creator }}</p>
+<p class="note"><b>Description: </b> {{ instances.instance.description }}</p>
+<p class="note"><b>Time: </b> {{ instances.time }}</p>
+<p class="note"><b>Area: </b>{{ instances.group.area }}</p>
+<p class="note"><b>Location: </b>{{ instances.instance_location }}</p>
+<p class="note"><b>Group: </b><a href="{% url 'groups:detail' instances.instance.pk %}"> {{ instances.instance }}</a></p>
+<p class="note"><b>Owner Group: </b><a href="{% url 'groups:detail' instances.group.pk %}">{{ instances.group.name }}</a></p>
+<p class="note"><b>Game: </b><a href="{% url 'gametest:game_details' instances.game.pk %}">{{ instances.game.name }}</a></p>
 {% endblock %}

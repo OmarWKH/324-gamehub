@@ -5,14 +5,11 @@
     <a class="button1" href="{% url 'groups:index' %}">List of groups</a> |
     <a class="button1" href="{% url 'groups:create' %}">Create Groups</a> |
     <a class="button1" href="{% url 'groups:join' 0%}">Join Groups</a> |
-    <a class="button1" href="{% url 'gametest:games_list' %}">Find Games</a>
+    <a class="button1" href="{% url 'gametest:games_list' %}">Find Games</a> |
+     <a class="button1" href="{% url 'userpage:index' request.user.pk %}">Profile</a>
 {% endblock %}
 {% block content %}
 <h1>Welcome {{ request.user }},</h1>
-
-
-
-
 
 <h3>Games You May List</h3> <!-- Supposed to select game info arbitrary (type, genre, platform) and then show similar games (Change every time) -->
 <ol class="rounded-list">
