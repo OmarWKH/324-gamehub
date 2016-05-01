@@ -4,56 +4,40 @@
 
 {% block content %}
 
-<!-- just a headline -->
-{% if boardgame_form %}
-	<h2>Board Game</h2>
-{% else %}
-	<h2>Game</h2>
-{% endif %}
+<h2>Game</h2>
 
-<table>
-	<thread>
-		{% for field in game_form %}
-			<th>{{ field.label }}</th>
+{% for field in game_form %}
+	<p class='note'>
+		<b>{{ field.label }}:</b>
+		{{ field.value|default_if_none:'-' }}
+	</p>
+{% endfor %}
+
+<p class="note">
+	<b>Genre:</b>
+	{% for genre in genres %}
+		{{ genre }}, 
+	{% endfor %}
+</p>
+
+
+{% for form in gametypes_forms %}
+	<h3>{{ form.instance.type }}</h3>
+	<p class='note'>
+		{% for field in form %}
+			<b>{{ field.label }}:</b>
+			{{ field.value|default_if_none:'-' }}
 		{% endfor %}
-
-		{% for form in gametypes_forms %}
-			{% for field in form %}
-				<th>{{ field.label }}</th>
-			{% endfor %}
-		{% endfor %}
-
-		<th>Genre</th>
-	</thread>
-	<tbody>
-		<tr>
-			{% for field in game_form %}
-				<td>{{ field.value|default_if_none:'-' }}</td>
-			{% endfor %}
-
-			{% for form in gametypes_forms %}
-				{% for field in form %}
-					<td>{{ field.value|default_if_none:'-' }}</td>
-				{% endfor %}
-			{% endfor %}
-
-			<td>
-				<ul>
-					{% for genre in genres %}
-						<li>{{ genre }}</li>
-					{% endfor %}
-				</ul>
-			</td>
-	</tbody>
-</table>
+	</p>
+{% endfor %}
 
 <h3>Players</h3>
 {% if players_list %}
-	<ul>
+	<ol class='rounded-list'>
 		{% for item in players_list %}
-			<li>{{ item.user }}</li>
+			<li><a href="{% url 'userpage:index' item.pk %}">{{ item.user }}</a></li>
 		{% endfor %}
-	</ul>
+	</ol>
 {% else %}
 	no players
 {% endif %}

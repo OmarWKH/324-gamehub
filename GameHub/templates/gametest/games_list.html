@@ -1,13 +1,19 @@
-{% extends "gametest/base.html" %}
 
+<style>
+	body {
+		width:80% !important;
+	}
+</style>
+{% extends "gametest/base.html" %}
 {% block title %}Game List{% endblock %}
 
 {% block content %}
-<table>
+<table class='list'>
 	<thread>
 		{% for field in search_form %}
 			<th>{{ field.label }}</th>
 		{% endfor %}
+		<th></th>
 	</thread>
 	<tbody>
 		<tr>
@@ -41,5 +47,5 @@
 </table>
 
 	
-<a href='{% url 'gametest:create_game' %}'>Create Game</a>
+<a class='button2' href='{% url 'gametest:create_game' %}'>Create Game</a>
 {% endblock %}
