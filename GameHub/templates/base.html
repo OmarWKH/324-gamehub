@@ -15,571 +15,528 @@
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
 {% endcomment %}
     <style>
-	  /*
+		/*
 		* PSDchat - Simple Flat Buttons
 		* Author & Copyright (c) 2013: Marijan Petrovski
 		* http://http://www.psdchat.com/
 		* Support: IE8+
 		*
-	*/
+		*/
 
+		a, a:link, a:active, a:visited, a:hover {
+			text-decoration: none;
+			outline: none;
+			}
 
-{#	/*Resets and overrides*/#}
-{#	html, body, div, h1, h2, h3, h4, h5, h6, p, ul, li, span {#}
-{#		margin: 0;#}
-{#		padding: 0;#}
-{#		line-height: 1;#}
-{#		}#}
-{##}
-{#	img {#}
-{#		border: none;#}
-{#		}#}
-{##}
-	a, a:link, a:active, a:visited, a:hover {
-		text-decoration: none;
-		outline: none;
-		}
-{##}
-{#	ul {#}
-{#		list-style-type: none;#}
-{#		}#}
-{##}
+		body {
+			background: #ffffff;
+			color: #00000;
+			font-family: 'Open Sans', sans-serif;
+			font-size: 15px;
+			font-weight: normal;
+			margin: 40px auto;
+			width: 60%;
+			}
 
-{#	p a {#}
-{#		float: left;#}
-{#		margin: 0 23px 40px 0;#}
-{#		}#}
+		h1 {
+			color: #34495e;
+			font-family: 'Asap', sans-serif;
+			font-size: 20px;
+			font-weight: normal;
+			margin: 0 23px 23px 0;
+			}
 
-	body {
-		background: #ffffff;
-		color: #00000;
-		font-family: 'Open Sans', sans-serif;
-		font-size: 15px;
-		font-weight: normal;
-		margin: 40px auto;
-		width: 60%;
+		footer {
+			font-size: 12px;
+			color: grey;
+			padding: 5px;
+			text-align: center
+			}
+
+		nav {
+		    margin-bottom: 5px;
 		}
 
-	h1 {
-		color: #34495e;
-		font-family: 'Asap', sans-serif;
-		font-size: 20px;
-		font-weight: normal;
-		margin: 0 23px 23px 0;
+		/* Use the Following CSS Code for Button1*/
+
+		.button1:link {
+			padding: 13px 20px;
+			background-color: #1abc9c;
+			-moz-border-radius: 3px;
+		    -webkit-border-radius: 3px;
+		    -khtml-border-radius: 3px;
+			border-radius: 3px;
+			-moz-box-shadow: 0px 3px 0px 0px #029e81;
+			-webkit-box-shadow: 0px 3px 0px 0px #029e81;
+			box-shadow: 0px 3px 0px 0px #029e81;
+			line-height: 100%;
+			text-align: center;
+			font-family: font-family: 'Open Sans', sans-serif;
+			font-size: 12px;
+			font-weight: 700;
+			color: #ffffff;
+			display: inline-block;
+			cursor: pointer;
+			}
+
+		.button1:visited {
+			background-color: #1abc9c;
+			-moz-border-radius: 3px;
+		    -webkit-border-radius: 3px;
+		    -khtml-border-radius: 3px;
+			border-radius: 3px;
+			-moz-box-shadow: 0px 3px 0px 0px #029e81;
+			-webkit-box-shadow: 0px 3px 0px 0px #029e81;
+			box-shadow: 0px 3px 0px 0px #029e81;
+			color: #ffffff;
+			}
+
+		.button1:hover {
+			background-color: #81dac9;
+			-moz-border-radius: 3px;
+		    -webkit-border-radius: 3px;
+		    -khtml-border-radius: 3px;
+			border-radius: 3px;
+			-moz-box-shadow: 0px 3px 0px 0px #78cfbf;
+			-webkit-box-shadow: 0px 3px 0px 0px #78cfbf;
+			box-shadow: 0px 3px 0px 0px #78cfbf;
+			color: #ffffff;
+			-webkit-transition: 0.5s;
+			-moz-transition: 0.5s;
+			-o-transition: 0.5s;
+			transition: 0.5s;
+			}
+
+		.button1:active {
+			background-color: #17a98c;
+			-moz-border-radius: 3px;
+		    -webkit-border-radius: 3px;
+		    -khtml-border-radius: 3px;
+			border-radius: 3px;
+			-moz-box-shadow: 0px 3px 0px 0px #09977c;
+			-webkit-box-shadow: 0px 3px 0px 0px #09977c;
+			box-shadow: 0px 3px 0px 0px #09977c;
+			}
+
+
+
+		/* Use the Following CSS Code for Button2*/
+		.button2:link {
+			padding: 13px 20px;
+			background-color: #8cc152;
+			-moz-border-radius: 3px;
+		    -webkit-border-radius: 3px;
+		    -khtml-border-radius: 3px;
+			border-radius: 3px;
+			-moz-box-shadow: 0px 3px 0px 0px #7db046;
+			-webkit-box-shadow: 0px 3px 0px 0px #7db046;
+			box-shadow: 0px 3px 0px 0px #7db046;
+			line-height: 100%;
+			text-align: center;
+			font-family: font-family: 'Open Sans', sans-serif;
+			font-size: 12px;
+			font-weight: 700;
+			color: #ffffff;
+			display: inline-block;
+			cursor: pointer;
+			}
+
+		.button2:visited {
+			background-color: #8cc152;
+			-moz-border-radius: 3px;
+		    -webkit-border-radius: 3px;
+		    -khtml-border-radius: 3px;
+			border-radius: 3px;
+			-moz-box-shadow: 0px 3px 0px 0px #7db046;
+			-webkit-box-shadow: 0px 3px 0px 0px #7db046;
+			box-shadow: 0px 3px 0px 0px #7db046;
+			color: #ffffff;
+			}
+
+		.button2:hover {
+			background-color: #c0dd77;
+			-moz-border-radius: 3px;
+		    -webkit-border-radius: 3px;
+		    -khtml-border-radius: 3px;
+			border-radius: 3px;
+			-moz-box-shadow: 0px 3px 0px 0px #bad76b;
+			-webkit-box-shadow: 0px 3px 0px 0px #bad76b;
+			box-shadow: 0px 3px 0px 0px #bad76b;
+			color: #ffffff;
+			-webkit-transition: 0.5s;
+			-moz-transition: 0.5s;
+			-o-transition: 0.5s;
+			transition: 0.5s;
+			}
+
+		.button2:active {
+			background-color: #85b74e;
+			-moz-border-radius: 3px;
+		    -webkit-border-radius: 3px;
+		    -khtml-border-radius: 3px;
+			border-radius: 3px;
+			-moz-box-shadow: 0px 3px 0px 0px #7bad46;
+			-webkit-box-shadow: 0px 3px 0px 0px #7bad46;
+			box-shadow: 0px 3px 0px 0px #7bad46;
+			}
+
+		ol {
+		    counter-reset: li; /* Initiate a counter */
+		    list-style: none; /* Remove default numbering */
+		    *list-style: decimal; /* Keep using default numbering for IE6/7 */
+		    font: 15px 'trebuchet MS', 'lucida sans';
+		    padding: 0;
+		    margin-bottom: 4em;
+		    text-shadow: 0 1px 0 rgba(255,255,255,.5);
 		}
 
-	footer {
-		font-size: 12px;
-		color: grey;
-		padding: 5px;
-		text-align: center
+		ol ol {
+		    margin: 0 0 0 2em; /* Add some left margin for inner lists */
 		}
 
-	nav {
-	    margin-bottom: 5px;
+		/* -------------------------------------- */
+
+		.rounded-list a{
+			position: relative;
+			display: block;
+			padding: .4em .4em .4em 2em;
+			*padding: .4em;
+			margin: .5em 0;
+			background: #ddd;
+			color: #444;
+			text-decoration: none;
+			-moz-border-radius: .3em;
+			-webkit-border-radius: .3em;
+			border-radius: .3em;
+			-webkit-transition: all .3s ease-out;
+			-moz-transition: all .3s ease-out;
+			-ms-transition: all .3s ease-out;
+			-o-transition: all .3s ease-out;
+			transition: all .3s ease-out;
+		}
+
+		.rounded-list a:hover{
+			background: #eee;
+		}
+
+		.rounded-list a:hover:before{
+			-moz-transform: rotate(360deg);
+		  	-webkit-transform: rotate(360deg);
+		    -moz-transform: rotate(360deg);
+		    -ms-transform: rotate(360deg);
+		    -o-transform: rotate(360deg);
+		    transform: rotate(360deg);
+		}
+
+		.rounded-list a:before{
+			content: counter(li);
+			counter-increment: li;
+			position: absolute;
+			left: -1.3em;
+			top: 50%;
+			margin-top: -1.3em;
+			background: #87ceeb;
+			height: 2em;
+			width: 2em;
+			line-height: 2em;
+			border: .3em solid #fff;
+			text-align: center;
+			font-weight: bold;
+			-moz-border-radius: 2em;
+			-webkit-border-radius: 2em;
+			border-radius: 2em;
+			-webkit-transition: all .3s ease-out;
+			-moz-transition: all .3s ease-out;
+			-ms-transition: all .3s ease-out;
+			-o-transition: all .3s ease-out;
+			transition: all .3s ease-out;
+		}
+
+		/* -------------------------------------- */
+
+		.rectangle-list a{
+			position: relative;
+			display: block;
+			padding: .4em .4em .4em .8em;
+			*padding: .4em;
+			margin: .5em 0 .5em 2.5em;
+			background: #ddd;
+			color: #444;
+			text-decoration: none;
+			-webkit-transition: all .3s ease-out;
+			-moz-transition: all .3s ease-out;
+			-ms-transition: all .3s ease-out;
+			-o-transition: all .3s ease-out;
+			transition: all .3s ease-out;
+		}
+
+		.rectangle-list a:hover{
+			background: #eee;
+		}
+
+		.rectangle-list a:before{
+			content: counter(li);
+			counter-increment: li;
+			position: absolute;
+			left: -2.5em;
+			top: 50%;
+			margin-top: -1em;
+			background: #fa8072;
+			height: 2em;
+			width: 2em;
+			line-height: 2em;
+			text-align: center;
+			font-weight: bold;
+		}
+
+		.rectangle-list a:after{
+			position: absolute;
+			content: '';
+			border: .5em solid transparent;
+			left: -1em;
+			top: 50%;
+			margin-top: -.5em;
+			-webkit-transition: all .3s ease-out;
+			-moz-transition: all .3s ease-out;
+			-ms-transition: all .3s ease-out;
+			-o-transition: all .3s ease-out;
+			transition: all .3s ease-out;
+		}
+
+		.rectangle-list a:hover:after{
+			left: -.5em;
+			border-left-color: #fa8072;
+		}
+
+		/* -------------------------------------- */
+
+		.circle-list li{
+		    padding: 2.5em;
+		    border-bottom: 1px dashed #ccc;
+		}
+
+		.circle-list h2{
+		    position: relative;
+		    margin: 0;
+		}
+
+		.circle-list p{
+		    margin: 0;
+		}
+
+		.circle-list h2:before{
+		    content: counter(li);
+		    counter-increment: li;
+		    position: absolute;
+		    z-index: -1;
+		    left: -1.3em;
+		    top: -.8em;
+		    background: #f5f5f5;
+		    height: 1.5em;
+		    width: 1.5em;
+		    border: .1em solid rgba(0,0,0,.05);
+		    text-align: center;
+		    font: italic bold 1em/1.5em Georgia, Serif;
+		    color: #ccc;
+		    -moz-border-radius: 1.5em;
+		    -webkit-border-radius: 1.5em;
+		    border-radius: 1.5em;
+		    -webkit-transition: all .2s ease-out;
+		    -moz-transition: all .2s ease-out;
+		    -ms-transition: all .2s ease-out;
+		    -o-transition: all .2s ease-out;
+		    transition: all .2s ease-out;
+		}
+
+		.circle-list li:hover h2:before{
+		    background-color: #ffd797;
+		    border-color: rgba(0,0,0,.08);
+		    border-width: .2em;
+		    color: #444;
+		    -webkit-transform: scale(1.5);
+		    -moz-transform: scale(1.5);
+		    -ms-transform: scale(1.5);
+		    -o-transform: scale(1.5);
+		    transform: scale(1.5);
+				}
+
+	.note,
+    p.note {
+    	vertical-align: top;
+    	display: block;
+    	color: #000000;
+    	border: solid 1px #ffffff;
+    	background-color: #ddd;
+	    -moz-border-radius: 6px;
+		-webkit-border-radius: 6px;
+	    border-radius: 6px;
+    	line-height: 100%;
+    	padding: 11px 20px;
+	    mc-auto-number-format: '{b}Note: {/b}';
 	}
 
-	/* Use the Following CSS Code for Button1*/
+	form{
+	    max-width: 80%;
+	    margin: 0 auto;
+	    padding: 55px;
+	    box-sizing: border-box;
 
-	.button1:link {
-		padding: 13px 20px;
-		background-color: #1abc9c;
-		-moz-border-radius: 3px;
-	    -webkit-border-radius: 3px;
-	    -khtml-border-radius: 3px;
-		border-radius: 3px;
-		-moz-box-shadow: 0px 3px 0px 0px #029e81;
-		-webkit-box-shadow: 0px 3px 0px 0px #029e81;
-		box-shadow: 0px 3px 0px 0px #029e81;
-		line-height: 100%;
+	    background-color:  #ffffff;
+	    box-shadow: 0 1px 8px 3px rgba(0, 0, 0, 0.1);
+
+	    font: bold 14px sans-serif;
+	    text-align: center;
+	}
+
+	form .required,
+	form tr,
+	form .form-row{
+	    text-align: left;
+	    margin-bottom: 22px;
+	}
+
+	/* The form title */
+
+	form h1{
+	    display: inline-block;
+	    box-sizing: border-box;
+	    color:  #4c565e;
+	    font-size: 24px;
+	    padding: 0 10px 15px;
+	    border-bottom: 2px solid #6caee0;
+	    margin: 0;
+	}
+
+
+	form .form-title-row{
+	    text-align: center;
+	    margin-bottom: 55px;
+	}
+
+	form h2{
+	    text-align: center;
+		margin-bottom: 5px;
+		margin-top: 20px;
+	}
+
+	form h3,
+	form .form-subtitle-row{
 		text-align: center;
-		font-family: font-family: 'Open Sans', sans-serif;
-		font-size: 12px;
-		font-weight: 700;
-		color: #ffffff;
-		display: inline-block;
-		cursor: pointer;
-		}
-
-	.button1:visited {
-		background-color: #1abc9c;
-		-moz-border-radius: 3px;
-	    -webkit-border-radius: 3px;
-	    -khtml-border-radius: 3px;
-		border-radius: 3px;
-		-moz-box-shadow: 0px 3px 0px 0px #029e81;
-		-webkit-box-shadow: 0px 3px 0px 0px #029e81;
-		box-shadow: 0px 3px 0px 0px #029e81;
-		color: #ffffff;
-		}
-
-	.button1:hover {
-		background-color: #81dac9;
-		-moz-border-radius: 3px;
-	    -webkit-border-radius: 3px;
-	    -khtml-border-radius: 3px;
-		border-radius: 3px;
-		-moz-box-shadow: 0px 3px 0px 0px #78cfbf;
-		-webkit-box-shadow: 0px 3px 0px 0px #78cfbf;
-		box-shadow: 0px 3px 0px 0px #78cfbf;
-		color: #ffffff;
-		-webkit-transition: 0.5s;
-		-moz-transition: 0.5s;
-		-o-transition: 0.5s;
-		transition: 0.5s;
-		}
-
-	.button1:active {
-		background-color: #17a98c;
-		-moz-border-radius: 3px;
-	    -webkit-border-radius: 3px;
-	    -khtml-border-radius: 3px;
-		border-radius: 3px;
-		-moz-box-shadow: 0px 3px 0px 0px #09977c;
-		-webkit-box-shadow: 0px 3px 0px 0px #09977c;
-		box-shadow: 0px 3px 0px 0px #09977c;
-		}
-
-
-
-	/* Use the Following CSS Code for Button2*/
-	.button2:link {
-		padding: 13px 20px;
-		background-color: #8cc152;
-		-moz-border-radius: 3px;
-	    -webkit-border-radius: 3px;
-	    -khtml-border-radius: 3px;
-		border-radius: 3px;
-		-moz-box-shadow: 0px 3px 0px 0px #7db046;
-		-webkit-box-shadow: 0px 3px 0px 0px #7db046;
-		box-shadow: 0px 3px 0px 0px #7db046;
-		line-height: 100%;
-		text-align: center;
-		font-family: font-family: 'Open Sans', sans-serif;
-		font-size: 12px;
-		font-weight: 700;
-		color: #ffffff;
-		display: inline-block;
-		cursor: pointer;
-		}
-
-	.button2:visited {
-		background-color: #8cc152;
-		-moz-border-radius: 3px;
-	    -webkit-border-radius: 3px;
-	    -khtml-border-radius: 3px;
-		border-radius: 3px;
-		-moz-box-shadow: 0px 3px 0px 0px #7db046;
-		-webkit-box-shadow: 0px 3px 0px 0px #7db046;
-		box-shadow: 0px 3px 0px 0px #7db046;
-		color: #ffffff;
-		}
-
-	.button2:hover {
-		background-color: #c0dd77;
-		-moz-border-radius: 3px;
-	    -webkit-border-radius: 3px;
-	    -khtml-border-radius: 3px;
-		border-radius: 3px;
-		-moz-box-shadow: 0px 3px 0px 0px #bad76b;
-		-webkit-box-shadow: 0px 3px 0px 0px #bad76b;
-		box-shadow: 0px 3px 0px 0px #bad76b;
-		color: #ffffff;
-		-webkit-transition: 0.5s;
-		-moz-transition: 0.5s;
-		-o-transition: 0.5s;
-		transition: 0.5s;
-		}
-
-	.button2:active {
-		background-color: #85b74e;
-		-moz-border-radius: 3px;
-	    -webkit-border-radius: 3px;
-	    -khtml-border-radius: 3px;
-		border-radius: 3px;
-		-moz-box-shadow: 0px 3px 0px 0px #7bad46;
-		-webkit-box-shadow: 0px 3px 0px 0px #7bad46;
-		box-shadow: 0px 3px 0px 0px #7bad46;
-		}
-
-	ol {
-	    counter-reset: li; /* Initiate a counter */
-	    list-style: none; /* Remove default numbering */
-	    *list-style: decimal; /* Keep using default numbering for IE6/7 */
-	    font: 15px 'trebuchet MS', 'lucida sans';
-	    padding: 0;
-	    margin-bottom: 4em;
-	    text-shadow: 0 1px 0 rgba(255,255,255,.5);
+		margin-bottom: 10px;
+		margin-top: 15px;
 	}
 
-	ol ol {
-	    margin: 0 0 0 2em; /* Add some left margin for inner lists */
+	form tr label,
+	form .form-row > label span{
+	    display: inline-block;
+	    box-sizing: border-box;
+	    color: #5F5F5F;
+	    width: 180px;
+	    text-align: right;
+	    vertical-align: top;
+	    padding: 12px 25px;
 	}
 
-				/* -------------------------------------- */
+	form a {
+	    display: inline-block;
+	    box-sizing: border-box;
+	    width: 180px;
+	    text-align: right;
+	    vertical-align: top;
+	    padding: 12px 25px;
+	}
 
-				.rounded-list a{
-					position: relative;
-					display: block;
-					padding: .4em .4em .4em 2em;
-					*padding: .4em;
-					margin: .5em 0;
-					background: #ddd;
-					color: #444;
-					text-decoration: none;
-					-moz-border-radius: .3em;
-					-webkit-border-radius: .3em;
-					border-radius: .3em;
-					-webkit-transition: all .3s ease-out;
-					-moz-transition: all .3s ease-out;
-					-ms-transition: all .3s ease-out;
-					-o-transition: all .3s ease-out;
-					transition: all .3s ease-out;
-				}
+	form input{
+	    color:  #5f5f5f;
+	    box-sizing: border-box;
+	    width: 240px;
+	    box-shadow: 1px 2px 4px 0 rgba(0, 0, 0, 0.08);
+	    padding: 12px;
+	    border: 1px solid #dbdbdb;
+	}
 
-				.rounded-list a:hover{
-					background: #eee;
-				}
+	form input[type=radio],
+	form input[type=checkbox]{
+	    box-shadow: none;
+	    width: auto;
+	}
 
-				.rounded-list a:hover:before{
-					-moz-transform: rotate(360deg);
-				  	-webkit-transform: rotate(360deg);
-				    -moz-transform: rotate(360deg);
-				    -ms-transform: rotate(360deg);
-				    -o-transform: rotate(360deg);
-				    transform: rotate(360deg);
-				}
+	form input[type=checkbox]{
+	    margin-top: 13px;
+	}
 
-				.rounded-list a:before{
-					content: counter(li);
-					counter-increment: li;
-					position: absolute;
-					left: -1.3em;
-					top: 50%;
-					margin-top: -1.3em;
-					background: #87ceeb;
-					height: 2em;
-					width: 2em;
-					line-height: 2em;
-					border: .3em solid #fff;
-					text-align: center;
-					font-weight: bold;
-					-moz-border-radius: 2em;
-					-webkit-border-radius: 2em;
-					border-radius: 2em;
-					-webkit-transition: all .3s ease-out;
-					-moz-transition: all .3s ease-out;
-					-ms-transition: all .3s ease-out;
-					-o-transition: all .3s ease-out;
-					transition: all .3s ease-out;
-				}
+	form select{
+	    background-color: #ffffff;
+	    color:  #5f5f5f;
+	    box-sizing: border-box;
+	    max-width: 240px;
+	    box-shadow: 1px 2px 4px 0 rgba(0, 0, 0, 0.08);
+	    padding: 12px 8px;
+	    border: 1px solid #dbdbdb;
+	}
 
-				/* -------------------------------------- */
+	form textarea{
+	    color:  #5f5f5f;
+	    box-sizing: border-box;
+	    width: 240px;
+	    height: 80px;
+	    box-shadow: 1px 2px 4px 0 rgba(0, 0, 0, 0.08);
+	    font: normal 13px sans-serif;
+	    padding: 12px;
+	    border: 1px solid #dbdbdb;
+	    resize: vertical;
+	}
 
-				.rectangle-list a{
-					position: relative;
-					display: block;
-					padding: .4em .4em .4em .8em;
-					*padding: .4em;
-					margin: .5em 0 .5em 2.5em;
-					background: #ddd;
-					color: #444;
-					text-decoration: none;
-					-webkit-transition: all .3s ease-out;
-					-moz-transition: all .3s ease-out;
-					-ms-transition: all .3s ease-out;
-					-o-transition: all .3s ease-out;
-					transition: all .3s ease-out;
-				}
+	form .form-radio-buttons{
+	    display: inline-block;
+	    vertical-align: top;
+	}
 
-				.rectangle-list a:hover{
-					background: #eee;
-				}
+	form .form-radio-buttons > div{
+	    margin-top: 10px;
+	}
 
-				.rectangle-list a:before{
-					content: counter(li);
-					counter-increment: li;
-					position: absolute;
-					left: -2.5em;
-					top: 50%;
-					margin-top: -1em;
-					background: #fa8072;
-					height: 2em;
-					width: 2em;
-					line-height: 2em;
-					text-align: center;
-					font-weight: bold;
-				}
+	form .form-radio-buttons label span{
+	    margin-left: 8px;
+	    color: #5f5f5f;
+	    font-weight: normal;
+	}
 
-				.rectangle-list a:after{
-					position: absolute;
-					content: '';
-					border: .5em solid transparent;
-					left: -1em;
-					top: 50%;
-					margin-top: -.5em;
-					-webkit-transition: all .3s ease-out;
-					-moz-transition: all .3s ease-out;
-					-ms-transition: all .3s ease-out;
-					-o-transition: all .3s ease-out;
-					transition: all .3s ease-out;
-				}
+	form .form-radio-buttons input{
+	    width: auto;
+	}
 
-				.rectangle-list a:hover:after{
-					left: -.5em;
-					border-left-color: #fa8072;
-				}
+	form input[type="submit"],
+	form button{
+	    display: block;
+	    border-radius: 2px;
+	    background-color:  #6caee0;
+	    color: #ffffff;
+	    font-weight: bold;
+	    box-shadow: 1px 2px 4px 0 rgba(0, 0, 0, 0.08);
+	    padding: 14px 22px;
+	    border: 0;
+	    margin: 40px 183px 0;
+	}
 
-				/* -------------------------------------- */
+	.list td:nth-child(even) {
+		background-color: white,
+	}
 
-				.circle-list li{
-				    padding: 2.5em;
-				    border-bottom: 1px dashed #ccc;
-				}
+	.list td:last-child {
+		background-color:  #f2f2f2;
+	}
 
-				.circle-list h2{
-				    position: relative;
-				    margin: 0;
-				}
+	.list th {
+		background-color: #C3C3C3;
+	}
 
-				.circle-list p{
-				    margin: 0;
-				}
-
-				.circle-list h2:before{
-				    content: counter(li);
-				    counter-increment: li;
-				    position: absolute;
-				    z-index: -1;
-				    left: -1.3em;
-				    top: -.8em;
-				    background: #f5f5f5;
-				    height: 1.5em;
-				    width: 1.5em;
-				    border: .1em solid rgba(0,0,0,.05);
-				    text-align: center;
-				    font: italic bold 1em/1.5em Georgia, Serif;
-				    color: #ccc;
-				    -moz-border-radius: 1.5em;
-				    -webkit-border-radius: 1.5em;
-				    border-radius: 1.5em;
-				    -webkit-transition: all .2s ease-out;
-				    -moz-transition: all .2s ease-out;
-				    -ms-transition: all .2s ease-out;
-				    -o-transition: all .2s ease-out;
-				    transition: all .2s ease-out;
-				}
-
-				.circle-list li:hover h2:before{
-				    background-color: #ffd797;
-				    border-color: rgba(0,0,0,.08);
-				    border-width: .2em;
-				    color: #444;
-				    -webkit-transform: scale(1.5);
-				    -moz-transform: scale(1.5);
-				    -ms-transform: scale(1.5);
-				    -o-transform: scale(1.5);
-				    transform: scale(1.5);
-				}
-
-      p.note
-{
-     color: #000000;
-     border: solid 1px #ffffff;
-          line-height: 70%;
-     background-color: #ddd;
-     -moz-border-radius: 6px;
-     -webkit-border-radius: 6px;
-     border-radius: 6px;
-     padding: 14px 20px;
-     mc-auto-number-format: '{b}Note: {/b}';
-}
-
-form{
-    max-width: 80%;
-    margin: 0 auto;
-    padding: 55px;
-    box-sizing: border-box;
-
-    background-color:  #ffffff;
-    box-shadow: 0 1px 8px 3px rgba(0, 0, 0, 0.1);
-
-    font: bold 14px sans-serif;
-    text-align: center;
-}
-
-form .required,
-form tr,
-form .form-row{
-    text-align: left;
-    margin-bottom: 22px;
-}
-
-/* The form title */
-
-form h1{
-    display: inline-block;
-    box-sizing: border-box;
-    color:  #4c565e;
-    font-size: 24px;
-    padding: 0 10px 15px;
-    border-bottom: 2px solid #6caee0;
-    margin: 0;
-}
+	.list {
+		width: 100px;
+	}
 
 
-form .form-title-row{
-    text-align: center;
-    margin-bottom: 55px;
-}
 
-form h2{
-    text-align: center;
-	margin-bottom: 5px;
-	margin-top: 20px;
-}
-
-form h3,
-form .form-subtitle-row{
-	text-align: center;
-	margin-bottom: 10px;
-	margin-top: 15px;
-}
-
-form tr label,
-form .form-row > label span{
-    display: inline-block;
-    box-sizing: border-box;
-    color: #5F5F5F;
-    width: 180px;
-    text-align: right;
-    vertical-align: top;
-    padding: 12px 25px;
-}
-
-form a {
-    display: inline-block;
-    box-sizing: border-box;
-    width: 180px;
-    text-align: right;
-    vertical-align: top;
-    padding: 12px 25px;
-}
-
-form input{
-    color:  #5f5f5f;
-    box-sizing: border-box;
-    width: 240px;
-    box-shadow: 1px 2px 4px 0 rgba(0, 0, 0, 0.08);
-    padding: 12px;
-    border: 1px solid #dbdbdb;
-}
-
-form input[type=radio],
-form input[type=checkbox]{
-    box-shadow: none;
-    width: auto;
-}
-
-form input[type=checkbox]{
-    margin-top: 13px;
-}
-
-form select{
-    background-color: #ffffff;
-    color:  #5f5f5f;
-    box-sizing: border-box;
-    max-width: 240px;
-    box-shadow: 1px 2px 4px 0 rgba(0, 0, 0, 0.08);
-    padding: 12px 8px;
-    border: 1px solid #dbdbdb;
-}
-
-form textarea{
-    color:  #5f5f5f;
-    box-sizing: border-box;
-    width: 240px;
-    height: 80px;
-    box-shadow: 1px 2px 4px 0 rgba(0, 0, 0, 0.08);
-    font: normal 13px sans-serif;
-    padding: 12px;
-    border: 1px solid #dbdbdb;
-    resize: vertical;
-}
-
-form .form-radio-buttons{
-    display: inline-block;
-    vertical-align: top;
-}
-
-form .form-radio-buttons > div{
-    margin-top: 10px;
-}
-
-form .form-radio-buttons label span{
-    margin-left: 8px;
-    color: #5f5f5f;
-    font-weight: normal;
-}
-
-form .form-radio-buttons input{
-    width: auto;
-}
-
-form input[type="submit"],
-form button{
-    display: block;
-    border-radius: 2px;
-    background-color:  #6caee0;
-    color: #ffffff;
-    font-weight: bold;
-    box-shadow: 1px 2px 4px 0 rgba(0, 0, 0, 0.08);
-    padding: 14px 22px;
-    border: 0;
-    margin: 40px 183px 0;
-}
-
-/*	Making the form responsive. Remove this media query
-    if you don't need the form to work on mobile devices. */
-
-{#@media (max-width: 600px) {#}
-{##}
-{#    form{#}
-{#        padding: 30px;#}
-{#        max-width: 480px;#}
-{#    }#}
-
-    form .form-row{
-        max-width: 300px;
-        margin: 25px auto;
-        text-align: left;
-    }
-
-    form .form-title-row{
-        margin-bottom: 50px;
-    }
-
-    form .form-row > label span{
-        display: block;
-        text-align: left;
-        padding: 0 0 15px;
-    }
-
-    form select{
-        width: 240px;
-    }
-
-    form input[type=checkbox]{
-        margin-top:0;
-    }
-
-    form .form-radio-buttons > div{
-        margin: 0 0 10px;
-    }
-
-    form button{
-        margin: 0;
-    }
 	</style>
 
 	<!-- jQuery -->
