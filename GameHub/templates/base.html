@@ -390,7 +390,7 @@
     box-sizing: border-box;
 
     background-color:  #ffffff;
-    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+    box-shadow: 0 1px 8px 3px rgba(0, 0, 0, 0.1);
 
     font: bold 14px sans-serif;
     text-align: center;
@@ -554,9 +554,11 @@
 	<nav>
 		{% block nav %}<a class='button1' href='{% url 'userpage:dashboard' %}'>Dashboard</a>{% endblock %}
 	</nav>
+    <br>
 	<main>
 		{% block content %}Main block | Override me :D{% endblock %}
 	</main>
+    <br>
 	<footer>
 		{% block footer %}ICS324 DB Project. Code: <a href='https://github.com/OmarWKH/324-gamehub'>https://github.com/OmarWKH/324-gamehub</a>{% endblock %}
 	</footer>
