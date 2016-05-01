@@ -382,9 +382,8 @@
 				    transform: scale(1.5);
 				}
 
-
-.form-basic{
-    max-width: 640px;
+form{
+    max-width: 80%;
     margin: 0 auto;
     padding: 55px;
     box-sizing: border-box;
@@ -396,19 +395,16 @@
     text-align: center;
 }
 
-.form-basic .form-row{
+form .required,
+form tr,
+form .form-row{
     text-align: left;
     margin-bottom: 22px;
 }
 
-.form-basic .form-title-row{
-    text-align: center;
-    margin-bottom: 55px;
-}
-
 /* The form title */
 
-.form-basic h1{
+form h1{
     display: inline-block;
     box-sizing: border-box;
     color:  #4c565e;
@@ -418,7 +414,27 @@
     margin: 0;
 }
 
-.form-basic .form-row > label span{
+
+form .form-title-row{
+    text-align: center;
+    margin-bottom: 55px;
+}
+
+form h2{
+    text-align: center;
+	margin-bottom: 5px;
+	margin-top: 20px;
+}
+
+form h3,
+form .form-subtitle-row{
+	text-align: center;
+	margin-bottom: 10px;
+	margin-top: 15px;
+}
+
+form tr label,
+form .form-row > label span{
     display: inline-block;
     box-sizing: border-box;
     color: #5F5F5F;
@@ -428,7 +444,16 @@
     padding: 12px 25px;
 }
 
-.form-basic input{
+form a {
+    display: inline-block;
+    box-sizing: border-box;
+    width: 180px;
+    text-align: right;
+    vertical-align: top;
+    padding: 12px 25px;
+}
+
+form input{
     color:  #5f5f5f;
     box-sizing: border-box;
     width: 240px;
@@ -437,17 +462,17 @@
     border: 1px solid #dbdbdb;
 }
 
-.form-basic input[type=radio],
-.form-basic input[type=checkbox]{
+form input[type=radio],
+form input[type=checkbox]{
     box-shadow: none;
     width: auto;
 }
 
-.form-basic input[type=checkbox]{
+form input[type=checkbox]{
     margin-top: 13px;
 }
 
-.form-basic select{
+form select{
     background-color: #ffffff;
     color:  #5f5f5f;
     box-sizing: border-box;
@@ -457,7 +482,7 @@
     border: 1px solid #dbdbdb;
 }
 
-.form-basic textarea{
+form textarea{
     color:  #5f5f5f;
     box-sizing: border-box;
     width: 240px;
@@ -469,26 +494,27 @@
     resize: vertical;
 }
 
-.form-basic .form-radio-buttons{
+form .form-radio-buttons{
     display: inline-block;
     vertical-align: top;
 }
 
-.form-basic .form-radio-buttons > div{
+form .form-radio-buttons > div{
     margin-top: 10px;
 }
 
-.form-basic .form-radio-buttons label span{
+form .form-radio-buttons label span{
     margin-left: 8px;
     color: #5f5f5f;
     font-weight: normal;
 }
 
-.form-basic .form-radio-buttons input{
+form .form-radio-buttons input{
     width: auto;
 }
 
-.form-basic button{
+form input[type="submit"],
+form button{
     display: block;
     border-radius: 2px;
     background-color:  #6caee0;
@@ -505,40 +531,40 @@
 
 {#@media (max-width: 600px) {#}
 {##}
-{#    .form-basic{#}
+{#    form{#}
 {#        padding: 30px;#}
 {#        max-width: 480px;#}
 {#    }#}
 
-    .form-basic .form-row{
+    form .form-row{
         max-width: 300px;
         margin: 25px auto;
         text-align: left;
     }
 
-    .form-basic .form-title-row{
+    form .form-title-row{
         margin-bottom: 50px;
     }
 
-    .form-basic .form-row > label span{
+    form .form-row > label span{
         display: block;
         text-align: left;
         padding: 0 0 15px;
     }
 
-    .form-basic select{
+    form select{
         width: 240px;
     }
 
-    .form-basic input[type=checkbox]{
+    form input[type=checkbox]{
         margin-top:0;
     }
 
-    .form-basic .form-radio-buttons > div{
+    form .form-radio-buttons > div{
         margin: 0 0 10px;
     }
 
-    .form-basic button{
+    form button{
         margin: 0;
     }
 	</style>

@@ -2,42 +2,15 @@
 
 {% block title %}Create Game{% endblock %}
 
-{% comment %}
-{% block content %}
-<form method='POST'>
-	{% csrf_token %}
-	{{ game_form }}
-	<table id='type'>
-		<tr><td><a href="javascript:void(0)" id="add_type">Add Type</a></td></tr>
-		{{ type_formset.management_form }}
-		{% for form in type_formset %}
-			{{ form.as_table }}
-		{% endfor %}
-	</table>
-	<input type='submit' value='Save'>
-</form>
-
-<script>
-	var form_count = {{type_formset.total_form_count}};
-	$('#add_type').click(function() {
-		form_count++;
-		var form = '{{type_formset.empty_form|escapejs}}'.replace(/__prefix__/g, form_count-1);
-		$('#type').append(form)
-		$('#id_type-TOTAL_FORMS').val(form_count);
-	});
-</script>
-{% endblock %}
-{% endcomment %}
-
 {% block content %}
 <form method='POST'>
 	{% csrf_token %} <!-- some verification thing  -->
 	<table id='game'>
-		<h2>Game</h2>
+		<h1>Game</h1>
 		{{ game_form }}
 	</table>
 	<table id='genres'>
-		<tr><td><h4>Genres</h4></td></tr>
+		<tr><td><h3>Genres</h3></td></tr>
 		<tr><td><a href="javascript:void(0)" id="add_genre">Add Genre</a></td></tr>
 		{{ genres_formset.management_form }}
 		{% for form in genres_formset %}
@@ -47,7 +20,7 @@
 	<table id='types'>
 		{% for gametype_formset in gametypes_formsets %}
 			{{ gametype_formset.management_form }}
-			<tr><td><h3>{{ gametype_formset.model.type }}</h3></td></tr>
+			<tr><td><h2>{{ gametype_formset.model.type }}</h2></td></tr>
 			{% for form in gametype_formset.forms %}
 				{{ form }}
 			{% endfor %}
