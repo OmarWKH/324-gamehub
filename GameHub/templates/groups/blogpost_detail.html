@@ -3,12 +3,8 @@
 {% block content %}
 <h1>Details of {{ blogpost.pk}}</h1>
 
-<b>User: </b> {{ blogpost.user }}
-<br>
-<b>Group: </b><a href="{% url 'groups:detail' blogpost.group.pk %}"> {{ blogpost.group.name }}</a>
-<br>
-<b>Time: </b>{{ blogpost.bp_time }}
-<br>
-<b>Text: </b><br>{{ blogpost.text | linebreaksbr }}
-<br>
+<p class="note"><b>User:   </b>{{ blogpost.user }}</p>
+<p class="note"><b>Group: </b><a href="{% url 'groups:detail' blogpost.group.pk %}"> {{ blogpost.group.name }}</a></p>
+<p class="note"><b>Time: </b>{{ blogpost.bp_time }}</p>
+<p class="note"><b>Text: </b><br>{{ blogpost.text | linebreaksbr }}</p>
 {% endblock %}

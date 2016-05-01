@@ -3,17 +3,15 @@
 {% block content %}
 <h1>Details of {{ group.name}}</h1>
 
-<b>ID: </b> {{ group.pk }}
+<p class="note"><b>ID: </b> {{ group.pk }}</p>
+<p class="note"><b>Creator: </b>{{ group.creator }}</p>
+<p class="note"><b>Description: </b> {{ group.description }}</p>
+<p class="note"><b>Location: </b>{{ group.area }}</p>
 <br>
-<b>Creator: </b>{{ group.creator }}
-<br>
-<b>Description: </b> {{ group.description }}
-<br>
-<b>Location: </b>{{ group.area }}
-<br>
-<br>
+    <hr>
+    <br>
+    <br>
 <b>Users Joined:</b>
-<br>
 <ol class="rounded-list">
 {% for g in group.usergroup_set.all %}
     {% if g.group_id == group.pk %}
@@ -21,6 +19,7 @@
     {% endif %}
 {% endfor %}
 </ol>
+    <hr>
 <br>
     <ol class="rectangle-list">
 <li><a href="{% url 'groups:GroupInstances' group.pk %}">Instances</a></li>
