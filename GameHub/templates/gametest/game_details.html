@@ -36,6 +36,11 @@
 	<ol class='rounded-list'>
 		{% for item in players_list %}
 			<li><a href="{% url 'userpage:index' item.pk %}">{{ item.user }}</a></li>
+			<ol>
+				<li><b>Ownership:</b> {{ item.ownership }}</li>
+				<li><b>Skill:</b> {{ item.skill }}</li>
+				<li><b>Note:</b> {{ item.note }}</li>
+			</ol>
 		{% endfor %}
 	</ol>
 {% else %}

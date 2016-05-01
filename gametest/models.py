@@ -137,7 +137,6 @@ class List(models.Model):
     ownership = models.IntegerField(db_column='Ownership')  # Field name made lowercase.
     skill = models.CharField(db_column='Skill', max_length=20, blank=True, null=True)  # Field name made lowercase.
     game = models.ForeignKey(Game, models.DO_NOTHING, db_column='GAME_ID')  # Field name made lowercase.
-    # user = models.ForeignKey('', models.DO_NOTHING, db_column='USER_ID')  # Field name made lowercase.
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
 
     @classmethod
