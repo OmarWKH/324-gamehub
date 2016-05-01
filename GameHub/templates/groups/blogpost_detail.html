@@ -1,3 +1,6 @@
+{% extends "groups/base.html" %}
+
+{% block content %}
 <h1>Details of {{ blogpost.pk}}</h1>
 
 <b>User: </b> {{ blogpost.user }}
@@ -8,3 +11,4 @@
 <br>
 <b>Text: </b><br>{{ blogpost.text | linebreaksbr }}
 <br>
+{% endblock %}

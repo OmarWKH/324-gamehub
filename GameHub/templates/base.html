@@ -44,34 +44,43 @@
 {#		list-style-type: none;#}
 {#		}#}
 {##}
-	body {
-		background: #ffffff;
-		color: #00000;
-		font-family: 'Open Sans', sans-serif;
-		font-size: 18px;
-		font-weight: normal;
-		}
 
-	h1 {
-		color: #34495e;
-		font-family: 'Asap', sans-serif;
-		font-size: 18px;
-		font-weight: normal;
-		margin: 0 23px 23px 0;
-		}
-{##}
-{#	article {#}
-{#		width: 900px;#}
-{#		margin: 0 auto;#}
-{#		padding-top: 50px;#}
-{#		}#}
-{##}
 {#	p a {#}
 {#		float: left;#}
 {#		margin: 0 23px 40px 0;#}
 {#		}#}
 
+	body {
+		background: #ffffff;
+		color: #00000;
+		font-family: 'Open Sans', sans-serif;
+		font-size: 15px;
+		font-weight: normal;
+		margin: 40px auto;
+		width: 60%;
+		}
+
+	h1 {
+		color: #34495e;
+		font-family: 'Asap', sans-serif;
+		font-size: 20px;
+		font-weight: normal;
+		margin: 0 23px 23px 0;
+		}
+
+	footer {
+		font-size: 12px;
+		color: grey;
+		padding: 5px;
+		text-align: center
+		}
+
+	nav {
+	    margin-bottom: 5px;
+	}
+
 	/* Use the Following CSS Code for Button1*/
+
 	.button1:link {
 		padding: 13px 20px;
 		background-color: #1abc9c;
@@ -193,7 +202,7 @@
 		box-shadow: 0px 3px 0px 0px #7bad46;
 		}
 
-		ol {
+	ol {
 	    counter-reset: li; /* Initiate a counter */
 	    list-style: none; /* Remove default numbering */
 	    *list-style: decimal; /* Keep using default numbering for IE6/7 */
@@ -206,26 +215,6 @@
 	ol ol {
 	    margin: 0 0 0 2em; /* Add some left margin for inner lists */
 	}
-	body{
-					margin: 40px auto;
-					width: 800px;
-				}
-
-				/* -------------------------------------- */
-
-				ol{
-					counter-reset: li;
-					list-style: none;
-					*list-style: decimal;
-					font: 15px 'trebuchet MS', 'lucida sans';
-					padding: 0;
-					margin-bottom: 4em;
-					text-shadow: 0 1px 0 rgba(255,255,255,.5);
-				}
-
-				ol ol{
-					margin: 0 0 0 2em;
-				}
 
 				/* -------------------------------------- */
 
@@ -555,21 +544,21 @@
 	</style>
 
 	<!-- jQuery -->
-{#	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>#}
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
 </head>
 
 <body>
 	<header>
-		{% block header %}<h1>Header block</h1>{% endblock %}
+		{% block header %}<h1>GameHub</h1>{% endblock %}
 	</header>
 	<nav>
-		{% block nav %}Navigation block{% endblock %}
+		{% block nav %}<a class='button1' href='{% url 'userpage:dashboard' %}'>Dashboard</a>{% endblock %}
 	</nav>
 	<main>
 		{% block content %}Main block | Override me :D{% endblock %}
 	</main>
 	<footer>
-		{% block footer %}Footer block{% endblock %}
+		{% block footer %}ICS324 DB Project. Code: <a href='https://github.com/OmarWKH/324-gamehub'>https://github.com/OmarWKH/324-gamehub</a>{% endblock %}
 	</footer>
 </body>
 

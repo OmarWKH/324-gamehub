@@ -1,3 +1,6 @@
+{% extends "groups/base.html" %}
+
+{% block content %}
 <h1>Details of {{ instances.instance }}</h1>
 
 <b>ID: </b> {{ instances.instance.pk }}
@@ -17,3 +20,4 @@
 <b>Owner Group: </b><a href="{% url 'groups:detail' instances.group.pk %}">{{ instances.group.name }}</a>
 <br>
 <b>Game: </b><a href="{% url 'gametest:game_details' instances.game.pk %}">{{ instances.game.name }}</a>
+{% endblock %}

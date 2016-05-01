@@ -3,8 +3,6 @@
 {% block title %}Groups{% endblock %}
 
 {% block nav %}
-<a href='{% url 'groups:index' %}'>See all groups</a>
+{{ block.super }}
+<a class='button1' href='{% url 'groups:index' %}'>All Groups</a>
 {% endblock %}
-
-{% block header %}{% endblock %}
-{% block footer %}{% endblock %}

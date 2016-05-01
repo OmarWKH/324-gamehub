@@ -3,5 +3,6 @@
 {% block title %}Games Directory{% endblock %}
 
 {% block nav %}
-<a href='{% url 'gametest:games_list' %}'>See all games</a>
+{{ block.super }}
+<a class='button1' href='{% url 'gametest:games_list' %}'>All Games</a>
 {% endblock %}
