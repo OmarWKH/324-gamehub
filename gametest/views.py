@@ -36,6 +36,45 @@ class UserListForm(ModelForm):
 		model = List
 		exclude = ('id',)
 
+def my_games(request):
+	search_instance = Game()
+	search_form = SimpleGameForm(request.POST or None, instance=search_instance)
+
+	user_games_reference = List.objects.values_list('game', flat=True).filter(user=request.user)
+	user_games = Game.objects.filter(game_id__in=set(user_games_reference))
+	
+	if request.POST:
+		search_query = request.POST.dict()
+		request.POST = None
+		
+		del search_query['csrfmiddlewaretoken']
+		for key, value in search_query.items():
+			if (value == ''):
+				del search_query[key]
+		make_icontains(search_query, ['name', 'competitve_level', 'age_group'])
+
+		list = Game.objects.filter(**search_query) & user_games
+
+	else:
+		list = user_games
+
+	forms_list = []
+	for game in list:
+		forms_list.append(SimpleGameForm(request.GET or None, instance=game))
+
+	context = {
+		'forms_list': forms_list,
+		'search_form': search_form
+	}
+
+	if request.POST:
+		return games_list(request)
+	return render(request, 'gametest/games_list.html', context)
+
+def make_icontains(query, keys):
+	for key in keys:
+		if key in query:
+			query[key+'__icontains'] = query.pop(key)
 
 def games_list(request):
 	search_instance = Game()
