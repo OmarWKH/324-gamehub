@@ -15,7 +15,7 @@ We hope the experience stored here is beneficial, but this repository is not to 
 - Other files and folders are not worth mentioning
 
 ###How to run it?
-~~- Method 1: Open http://omarkh.pythonanywhere.com | Register or log in with user: omarkh, password: ali12345~~
+- ~~Method 1: Open http://omarkh.pythonanywhere.com | Register or log in with user: omarkh, password: ali12345~~
 - Method 2: Install and run locally as described below
 
 ###Installation:
