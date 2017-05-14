@@ -3,7 +3,7 @@ Database (ICS324@KFUPM) project: Social network - Player and game directory
 
 We hope the experience stored here is beneficial, but this repository is not to be referenced for best coding or Django practices.
 
-###Description of directory:
+### Description of directory:
 - GameHub - Main project folder (includes all HTML templates)
 - gametest - Project folder for Game entities
 - groups - Project folder for Groups and Blogposts
@@ -14,11 +14,11 @@ We hope the experience stored here is beneficial, but this repository is not to 
 - requirements.txt - Requirements needed to run the website
 - Other files and folders are not worth mentioning
 
-###How to run it?
-- ~~Method 1: Use our PythonAnywhere hosted instance~~
+### How to run it?
+- Method 1: Open http://omarkh.pythonanywhere.com | Register or log in with user: omarkh, password: ali12345
 - Method 2: Install and run locally as described below
 
-###Installation:
+### Installation:
 1. Install Python (preferably 2.7): https://www.python.org/downloads/
 2. Install the requirements:
   1. navigate to the folder containing GameHub, gametest, ..
@@ -28,7 +28,7 @@ We hope the experience stored here is beneficial, but this repository is not to 
   2. run `python manage.py runserver`
 4. The website will be at 127.0.0.1:8000
 
-###Creating the sqlite3 database:
+### Creating the sqlite3 database:
 db.sqlite3 is a database that can already be used. If you want to create your own:
 
 1. Run sqlite3 to see if you have sqlite3 installed. If you don't, install it:
